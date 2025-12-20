@@ -1,14 +1,13 @@
 "use client";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import { IoArrowBackSharp } from "react-icons/io5";
-import { IoArrowForwardSharp } from "react-icons/io5";
 import tiktik from "@/app/images/Titik.svg";
 import Image from "next/image";
+import { IoArrowBackSharp, IoArrowForwardSharp } from "react-icons/io5";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 interface Service {
   id: string | number;
-  serviceName: string;
+  service_name: string;
   description: string;
   image: string;
 }
@@ -21,7 +20,6 @@ const ServicePageCarousel = ({ services }: ServicePageCarouselProps) => {
   if (!services || services.length === 0) return null;
   return (
     <div className="w-full relative flex flex-col justify-center items-center">
-      
       <Carousel
         showIndicators={false}
         showStatus={false}
@@ -56,7 +54,7 @@ const ServicePageCarousel = ({ services }: ServicePageCarouselProps) => {
                 Our Services
               </h4>
               <h1 className=" text-[22px] lg:text-[40px] font-bold leading-tight ">
-                {service.serviceName}
+                {service.service_name}
               </h1>
               <p className="text-[#0E0E2C]/60 dark:text-white/60 text-[18px] lg:text-[22px] ">
                 {service.description.split(" ").slice(0, 30).join(" ")}

@@ -1,15 +1,33 @@
-import Image from "next/image";
 import snake from "@/app/images/snake.svg";
+import Image from "next/image";
+import ContactForm from "../_components/ContactForm";
 import ContactpageAccour from "../_components/ContactpageAccour";
 import ServicePageCarousel from "../_components/ServicePageCarousel";
 import Testmonial from "../_components/Testmonial";
-import ContactForm from "../_components/ContactForm";
-import { prisma } from "@/lib/utils";
 export const dynamic = "force-dynamic";
 
 const ContactPage = async () => {
   // Fetching services from the database can be done here if needed
-  const services = await prisma.service.findMany();
+  const services = [
+    {
+      id: 2,
+      created_at: "2025-12-15T04:44:24.000Z",
+      serviceName: "development",
+      description: "we are working from heart!",
+      image:
+        "https://res.cloudinary.com/dsktb64i8/image/upload/v1765795464/ctlubnigc1um6lgstjwk.png",
+      image_public_id: "ctlubnigc1um6lgstjwk",
+    },
+    {
+      id: 3,
+      created_at: "2025-12-15T04:44:24.000Z",
+      serviceName: "development",
+      description: "we are working from heart!",
+      image:
+        "https://res.cloudinary.com/dsktb64i8/image/upload/v1765795464/ctlubnigc1um6lgstjwk.png",
+      image_public_id: "ctlubnigc1um6lgstjwk",
+    },
+  ];
 
   return (
     <div className="w-full relative">

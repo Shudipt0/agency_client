@@ -1,24 +1,26 @@
 "use client";
 
-import ImageUpload from "@/app/_components/ImageUpload";
-import { upDateService } from "@/app/actions/service/service";
-import { useImageContext } from "@/context/ImageContext";
+import SingleFileDrop from "@/app/_components/SingleFileDrop";
+import { upDateService } from "@/app/actions/service/updateService";
+
+import { useActionState } from "react";
 
 interface Service {
   id: string;
-  serviceName: string;
+  service_name: string;
   description: string;
   image: string;
 }
 const ServiceUpdateFormPage = (service: Service) => {
-  const { imageUrl } = useImageContext();
+  const [state, action, isPending] = useActionState(upDateService, null);
+  // console.log(service);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="w-[700px]">
         <form
-          action={upDateService}
-          className="w-full bg-green-100 border rounded-lg flex flex-col gap-4 p-8 "
+          action={action}
+          className="w-full bg-gray-100 dark:bg-gray-800 border rounded-lg flex flex-col gap-4 p-8 "
         >
           <input
             type="hidden"
@@ -28,13 +30,13 @@ const ServiceUpdateFormPage = (service: Service) => {
             readOnly={true}
             className="hidden"
           />
-          <label htmlFor="serviceName">Service Name:</label>
+          <label htmlFor="service_name">Service Name:</label>
           <input
             type="text"
-            name="serviceName"
-            id="serviceName"
-            defaultValue={service?.serviceName}
-            className="outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            name="service_name"
+            id="service_name"
+            defaultValue={service?.service_name}
+            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-1 rounded"
           />
 
           <label htmlFor="description">Description:</label>
@@ -43,25 +45,26 @@ const ServiceUpdateFormPage = (service: Service) => {
             name="description"
             id="description"
             defaultValue={service?.description}
-            className="h-[200px] outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="h-[200px] outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-1 rounded"
           />
 
-          <label htmlFor="image">Image: url </label>
+          <label htmlFor="image_url">Image: url </label>
           <input
             type="text"
-            name="image"
-            id="image"
-            defaultValue={imageUrl ?? service?.image}
+            name="image_url"
+            id="image_url"
+            defaultValue={service?.image}
             placeholder="Upload image here"
-            className="outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-1 rounded"
           />
           <span>or</span>
           <div>
-            <ImageUpload />
+            <SingleFileDrop image="image_file" />
           </div>
           <button
             type="submit"
-            className="px-3 py-2 text-sm text-white font-bold bg-blue-500 rounded-lg"
+            disabled={isPending}
+            className="px-3 py-2 text-sm text-white font-bold bg-blue-500 hover:bg-blue-700 rounded-lg"
           >
             Update
           </button>

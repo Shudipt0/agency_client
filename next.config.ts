@@ -6,16 +6,18 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "9q6klkylv0.ufs.sh" ,
-
+        hostname: "9q6klkylv0.ufs.sh",
       },
-        {
+      {
         protocol: "https",
-        hostname: "img.clerk.com" ,
-
+        hostname: "img.clerk.com",
       },
-    ]
-  }
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

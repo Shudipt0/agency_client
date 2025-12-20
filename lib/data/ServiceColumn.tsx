@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 
@@ -15,13 +14,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { deleteService } from "../../app/actions/service/service";
 import Image from "next/image";
+import { deleteService } from "../../app/actions/service/createService";
 
 // Define the Services type if not already defined or import it from the correct location
 type Services = {
   id: string;
-  serviceName: string;
+  service_name: string;
   description: string;
   image: string;
 };
@@ -30,13 +29,17 @@ export const columns: ColumnDef<Services>[] = [
   {
     accessorKey: "id",
     header: "ID",
-    cell: ({ row }) => <div className="capitalize text-start">{row.getValue("id")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize text-start pl-2">{row.getValue("id")}</div>
+    ),
   },
   {
-    accessorKey: "serviceName",
+    accessorKey: "service_name",
     header: "Service Name",
     cell: ({ row }) => (
-      <div className="capitalize text-start">{row.getValue("serviceName")}</div>
+      <div className="capitalize text-start">
+        {row.getValue("service_name")}
+      </div>
     ),
   },
   {
@@ -74,7 +77,7 @@ export const columns: ColumnDef<Services>[] = [
       const service = row.original;
       // delete item
       const handleDelete = async () => {
-        const id = row.getValue("id");
+        const id = row.getValue("id") as string;
         const deleteItem = await deleteService(id);
       };
 

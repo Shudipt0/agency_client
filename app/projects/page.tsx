@@ -6,8 +6,8 @@ import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoArrowForwardSharp } from "react-icons/io5";
 import Testmonial from "../_components/Testmonial";
+import { getProjects } from "../actions/projects/fetchProjects";
 export const dynamic = "force-dynamic";
-
 
 const projectDescription = {
   page: "Our Projects",
@@ -22,7 +22,9 @@ const numbering = [
   { title: "Solutions Created", number: "+10" },
   { title: "Bussiness Growed", number: "+25" },
 ];
-const page = () => {
+const projectPage = async () => {
+  const projects = await getProjects();
+
   return (
     <div className="w-full container mx-auto px-6 lg:px-28 mt-20 lg:mt-32 flex flex-col items-center  ">
       <div className="lg:w-[768px] flex flex-col justify-center items-start lg:items-center text-start lg:text-center space-y-6 lg:space-y-8 ">
@@ -33,24 +35,25 @@ const page = () => {
         <p className="text-[18px] lg:text-[22px] text-[#0E0E2C]/60 dark:text-white/60 lg:w-[732px]">
           {projectDescription.description}
         </p>
-          <div className="w-full flex justify-center">
-        <Link href='/contact'>
-          
-          <button className="flex items-center gap-3 text-[18px] lg:text-[22px] font-medium px-3 py-1 ">
-            Let's Talk
-            <span className="text-blue-500 dark:text-white pt-1 ">
-              <IoArrowForwardSharp />
-            </span>
-          </button>
-        </Link>
-      </div>
+        <div className="w-full flex justify-center">
+          <Link href="/contact">
+            <button className="flex items-center gap-3 text-[18px] lg:text-[22px] font-medium px-3 py-1 ">
+              Let's Talk
+              <span className="text-blue-500 dark:text-white pt-1 ">
+                <IoArrowForwardSharp />
+              </span>
+            </button>
+          </Link>
+        </div>
         <div className="w-full grid grid-cols-2 lg:grid-cols-4 justify-between gap-16  pt-10">
           {numbering.map((item, index) => (
             <div key={index} className="space-y-3 text-start">
               <h4 className="text-[16px] text-blue-500 dark:text-white font-semibold ">
                 {item.title}
               </h4>
-              <h1 className="text-4xl font-bold text-black dark:text-white ">{item.number}</h1>
+              <h1 className="text-4xl font-bold text-black dark:text-white ">
+                {item.number}
+              </h1>
             </div>
           ))}
         </div>
@@ -75,23 +78,22 @@ const page = () => {
               tracking system too
             </p>
             <div className="hidden lg:flex">
-            <Link href="#" >
-              <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
-                Check the project
-                <span>
-                  <IoIosArrowForward size={20} />
-                </span>
-              </button>
-            </Link>
+              <Link href="#">
+                <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
+                  Check the project
+                  <span>
+                    <IoIosArrowForward size={20} />
+                  </span>
+                </button>
+              </Link>
             </div>
-           
           </div>
           {/* right site */}
           <div className="w-full lg:w-[540px]  ">
             <Image src={image1} alt="image1" className="w-full lg:w-[540px] " />
           </div>
-             <div className="w-full flex justify-center lg:hidden">
-            <Link href="#" >
+          <div className="w-full flex justify-center lg:hidden">
+            <Link href="#">
               <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
                 Check the project
                 <span>
@@ -99,12 +101,12 @@ const page = () => {
                 </span>
               </button>
             </Link>
-            </div>
+          </div>
         </div>
         {/* part 2 */}
         <div className=" w-full flex flex-col-reverse lg:flex-row justify-between items-center gap-12 lg:gap-0 pt-20 lg:pt-0">
-         <div className="w-full flex justify-center lg:hidden">
-            <Link href="#" >
+          <div className="w-full flex justify-center lg:hidden">
+            <Link href="#">
               <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
                 Check the project
                 <span>
@@ -112,7 +114,7 @@ const page = () => {
                 </span>
               </button>
             </Link>
-            </div>
+          </div>
           {/* left site */}
           <div className="w-full  mt-10 md:mt-0 lg:w-[540px]  ">
             <Image src={image2} alt="image1" className="w-full lg:w-[540px]" />
@@ -129,18 +131,17 @@ const page = () => {
               Cooke me is an platform that offer fresh meal with a cheap price
               and allow indivudial to sell their meals
             </p>
-           <div className="hidden lg:flex">
-            <Link href="#" >
-              <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
-                Check the project
-                <span>
-                  <IoIosArrowForward size={20} />
-                </span>
-              </button>
-            </Link>
+            <div className="hidden lg:flex">
+              <Link href="#">
+                <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
+                  Check the project
+                  <span>
+                    <IoIosArrowForward size={20} />
+                  </span>
+                </button>
+              </Link>
             </div>
           </div>
-          
         </div>
 
         {/* part 3 */}
@@ -158,14 +159,14 @@ const page = () => {
               appoinment with a doctor , it alos work as a medical files Holder
             </p>
             <div className="hidden lg:flex">
-            <Link href="#" >
-              <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
-                Check the project
-                <span>
-                  <IoIosArrowForward size={20} />
-                </span>
-              </button>
-            </Link>
+              <Link href="#">
+                <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
+                  Check the project
+                  <span>
+                    <IoIosArrowForward size={20} />
+                  </span>
+                </button>
+              </Link>
             </div>
           </div>
           {/* right site */}
@@ -173,7 +174,7 @@ const page = () => {
             <Image src={image3} alt="image1" className="w-full lg:w-[540px] " />
           </div>
           <div className="w-full flex justify-center lg:hidden">
-            <Link href="#" >
+            <Link href="#">
               <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
                 Check the project
                 <span>
@@ -181,26 +182,25 @@ const page = () => {
                 </span>
               </button>
             </Link>
-            </div>
+          </div>
         </div>
-        
       </div>
 
       {/* button */}
-      <div className="py-[60px] lg:py-32 " >
+      <div className="py-[60px] lg:py-32 ">
         <Link href="/allProjects">
-              <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
-                Explore More Projects
-                <span>
-                  <IoIosArrowForward size={20} />
-                </span>
-              </button>
-            </Link>
+          <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
+            Explore More Projects
+            <span>
+              <IoIosArrowForward size={20} />
+            </span>
+          </button>
+        </Link>
       </div>
-            {/* Testimonial */}
+      {/* Testimonial */}
       <Testmonial />
     </div>
   );
 };
 
-export default page;
+export default projectPage;

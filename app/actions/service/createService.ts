@@ -1,0 +1,88 @@
+"use server";
+import { revalidatePath } from "next/cache";
+import z from "zod";
+
+// image validate schema
+const imageSchema = z
+  .instanceof(File)
+  .refine((file) => file.size > 0, "File connot be empty")
+  .refine(
+    (file) =>
+      ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(
+        file.type
+      ),
+    "Only .jpg, .jpeg, .png, or .webp files are allowed"
+  );
+
+// validate service data
+const serviceSchema = z.object({
+  service_name: z
+    .string()
+    .min(3, "Must be at least 3 characters long")
+    .max(50, "Must be at most 50 characters long"),
+  description: z.string().min(10, "Must be at least 10 characters long"),
+  image: imageSchema.optional(),
+});
+
+// add service
+export const addService = async (prevState: any, data: FormData) => {
+  // validate fields
+  const parsed = serviceSchema.safeParse({
+    service_name: data.get("service_name") as string,
+    description: data.get("description") as string,
+    image: data.get("image") as File,
+  });
+  // console.log(parsed);
+  if (!parsed.success) {
+    console.error("Validation errors:", parsed.error.flatten().fieldErrors);
+    return { errors: parsed.error.flatten().fieldErrors };
+  }
+
+  // ✅ build clean FormData (NO $ACTION_* keys)
+  const validateFields = parsed.data;
+
+  const payload = new FormData();
+  payload.append("service_name", validateFields.service_name);
+  payload.append("description", validateFields.description);
+  if (validateFields.image) {
+    payload.append("image", validateFields.image);
+  }
+
+  try {
+    const res = await fetch(`http://localhost:5000/api/v1/services`, {
+      method: "POST",
+      body: payload,
+      credentials: "include",
+    });
+
+    const service = await res.json();
+    if (!res.ok) {
+      console.error("API Error:", service);
+      return { error: service.message || "Failed to add service" };
+    }
+
+    return { success: true, service };
+    // revalidatePath("/admin/services");
+  } catch (error) {
+    console.error("Error in service adding:", error);
+    return { error: "add service failed" };
+  }
+
+  // console.log("successfully added",addNew);
+};
+
+// delete service
+export const deleteService = async (id: string) => {
+  const res = await fetch(`http://localhost:5000/api/v1/services/${id}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+
+  const deleteItem = await res.json();
+  if (!res.ok) {
+    console.error("API Error:", deleteItem);
+    return { error: deleteItem.message || "Failed to deleteItem" };
+  }
+  // console.log("successfully deleted",deleteItem);
+  revalidatePath("/admin/services");
+};

@@ -1,14 +1,11 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import {
-  ColumnDef,
- 
-} from "@tanstack/react-table"
-import { MoreHorizontal } from "lucide-react"
+import { ColumnDef } from "@tanstack/react-table";
+import { MoreHorizontal } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
+import { deleteProject } from "@/app/actions/projects/createProjects";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,14 +13,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { deleteProject } from "@/app/actions/service/projects"
-import Image from "next/image"
-
-
-
-
-
+} from "@/components/ui/dropdown-menu";
+import Image from "next/image";
 
 // Define the Services type if not already defined or import it from the correct location
 type Projects = {
@@ -32,14 +23,16 @@ type Projects = {
   title: string;
   description: string;
   image: string;
-  link: string
+  link: string;
 };
 
 export const columns: ColumnDef<Projects>[] = [
- {
+  {
     accessorKey: "id",
     header: "ID",
-    cell: ({ row }) => <div className="capitalize text-start">{row.getValue("id")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize text-start">{row.getValue("id")}</div>
+    ),
   },
   {
     accessorKey: "category",
@@ -50,21 +43,25 @@ export const columns: ColumnDef<Projects>[] = [
   },
   {
     accessorKey: "title",
-  header: "Title",
-    cell: ({ row }) => <div className="capitalize text-start">{row.getValue("title")}</div>,
+    header: "Title",
+    cell: ({ row }) => (
+      <div className="capitalize text-start">{row.getValue("title")}</div>
+    ),
   },
   {
     accessorKey: "description",
-  header: "Description",
-    cell: ({ row }) => <div className="capitalize text-start">
+    header: "Description",
+    cell: ({ row }) => (
+      <div className="capitalize text-start">
         {/* Display only the first three words of the description */}
         {(row.getValue("description") as string)
           .split(" ")
           .slice(0, 3)
           .join(" ")}
-    </div>,
+      </div>
+    ),
   },
-   {
+  {
     accessorKey: "image",
     header: "Image",
     cell: ({ row }) => (
@@ -81,26 +78,25 @@ export const columns: ColumnDef<Projects>[] = [
   },
   {
     accessorKey: "link",
-  header: "Link",
-    cell: ({ row }) => <div className="capitalize text-start">
+    header: "Link",
+    cell: ({ row }) => (
+      <div className="capitalize text-start">
         {/* Display only the first three words of the link */}
-        {(row.getValue("link") as string)
-          .split(" ")
-          .slice(0, 3)
-          .join(" ")}
-    </div>,
+        {(row.getValue("link") as string).split(" ").slice(0, 3).join(" ")}
+      </div>
+    ),
   },
-  
+
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const service = row.original
-// delete item
-      const handleDelete = async () =>{
-        const id = row.getValue("id")
-        const deleteItem = await deleteProject(id)
-      }
+      const service = row.original;
+      // delete item
+      const handleDelete = async () => {
+        const id = row.getValue("id");
+        const deleteItem = await deleteProject(id);
+      };
 
       return (
         <DropdownMenu>
@@ -112,15 +108,29 @@ export const columns: ColumnDef<Projects>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={()=> (window.location.href = `/admin/projects/${row.getValue('id')}/view`)} >
+            <DropdownMenuItem
+              onClick={() =>
+                (window.location.href = `/admin/projects/${row.getValue(
+                  "id"
+                )}/view`)
+              }
+            >
               View Details
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={()=> (window.location.href = `/admin/projects/${row.getValue('id')}/edit`)}>Edit</DropdownMenuItem>
-            <DropdownMenuItem onClick={handleDelete} >Delete</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() =>
+                (window.location.href = `/admin/projects/${row.getValue(
+                  "id"
+                )}/edit`)
+              }
+            >
+              Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleDelete}>Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      )
+      );
     },
   },
-]
+];

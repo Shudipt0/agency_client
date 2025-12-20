@@ -1,11 +1,10 @@
 "use client";
 
 import ImageUpload from "@/app/_components/ImageUpload";
-import { addThought } from "@/app/actions/service/thought";
-
+import { addThought } from "@/app/actions/experts/createExpert";
 
 import { useImageContext } from "@/context/ImageContext";
-import React, { useActionState } from "react";
+import { useActionState } from "react";
 
 const addThoughtPage = () => {
   const [state, action, isPending] = useActionState(addThought, null);
@@ -38,7 +37,6 @@ const addThoughtPage = () => {
           />
           <label htmlFor="thought">Thought:</label>
           <textarea
-            
             name="thought"
             id="thought"
             placeholder="Thought"

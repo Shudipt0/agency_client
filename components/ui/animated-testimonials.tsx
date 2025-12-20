@@ -1,12 +1,11 @@
 "use client";
 
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 
 import { useEffect, useState } from "react";
 
 type Testimonial = {
-  
   name: string;
   designation: string;
   src: string;
@@ -44,9 +43,9 @@ export const AnimatedTestimonials = ({
     return Math.floor(Math.random() * 21) - 10;
   };
 
-  useEffect(()=> {
-   setRotateY(randomRotateY())
-  },[]);
+  useEffect(() => {
+    setRotateY(randomRotateY());
+  }, []);
   return (
     <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
       <div className="relative flex flex-col gap-4 lg:gap-12">
@@ -55,7 +54,7 @@ export const AnimatedTestimonials = ({
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
-                  key={testimonial.src}
+                  key={index}
                   initial={{
                     opacity: 0,
                     scale: 0.9,
@@ -123,7 +122,6 @@ export const AnimatedTestimonials = ({
             <p className="text-sm text-gray-500 dark:text-neutral-500">
               {testimonials[active].designation}
             </p>
-           
           </motion.div>
           <div className="flex gap-4 pt-12 md:pt-0">
             <button

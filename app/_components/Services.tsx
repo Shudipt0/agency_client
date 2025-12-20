@@ -1,9 +1,10 @@
-import { prisma } from "@/lib/utils";
+import { getServices } from "../actions/service/fetchService";
 import ServiceCard from "./ServiceCard";
 
 const Services = async () => {
-  const services = await prisma.service.findMany({take: 6});
+  const services = await getServices();
   // console.log(services);
+
   return (
     <section className="py-10">
       <div className="py-4">
@@ -19,16 +20,17 @@ const Services = async () => {
           </h1>
         </div>
 
-        {services.map((service) => (
+        {services.map((service: any) => (
           <div className="cols-span-1 lg:w-60 " key={service.id}>
             <ServiceCard
               service={{
-                title: service.serviceName,
+                id: service.id,
+                title: service.service_name,
                 description: service.description,
               }}
             />
           </div>
-        ))}  
+        ))}
       </div>
     </section>
   );

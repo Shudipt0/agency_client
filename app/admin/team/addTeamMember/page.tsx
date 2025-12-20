@@ -1,9 +1,9 @@
 "use client";
 
 import ImageUpload from "@/app/_components/ImageUpload";
-import { addTeamMember } from "@/app/actions/service/team";
+import { addTeamMember } from "@/app/actions/members/createTeam";
 import { useImageContext } from "@/context/ImageContext";
-import React, { useActionState } from "react";
+import { useActionState } from "react";
 
 const page = () => {
   const [state, action, isPending] = useActionState(addTeamMember, null);
@@ -36,7 +36,6 @@ const page = () => {
           />
           <label htmlFor="bio_data">Bio-Data:</label>
           <textarea
-            
             name="bio_data"
             id="bio_data"
             placeholder="Bio-data"

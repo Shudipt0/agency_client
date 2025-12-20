@@ -1,7 +1,7 @@
 "use client";
 
 import ImageUpload from "@/app/_components/ImageUpload";
-import { upDateProject } from "@/app/actions/service/projects";
+import { upDateProject } from "@/app/actions/projects/createProjects";
 import { useImageContext } from "@/context/ImageContext";
 
 interface Projects {

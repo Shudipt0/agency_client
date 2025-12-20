@@ -1,13 +1,12 @@
 "use client";
 
 import ImageUpload from "@/app/_components/ImageUpload";
-import { upDateService } from "@/app/actions/service/service";
-import { upDateTeamMember } from "@/app/actions/service/team";
+import { upDateTeamMember } from "@/app/actions/members/createTeam";
 import { useImageContext } from "@/context/ImageContext";
 
 interface TeamMember {
   id: string;
-  name: string
+  name: string;
   profession: string;
   bio_data: string;
   image: string;
@@ -39,7 +38,7 @@ const TeamUpdateFormPage = (teamMember: TeamMember) => {
             className="outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
           />
 
-           <label htmlFor="profession">Profession:</label>
+          <label htmlFor="profession">Profession:</label>
 
           <input
             type="text"
@@ -50,13 +49,11 @@ const TeamUpdateFormPage = (teamMember: TeamMember) => {
           />
           <label htmlFor="bio_data">Bio-Data:</label>
           <textarea
-            
             name="bio_data"
             id="bio_data"
             defaultValue={teamMember?.bio_data}
             className="h-[200px] outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
           />
-
 
           <label htmlFor="image">Image: url </label>
           <input

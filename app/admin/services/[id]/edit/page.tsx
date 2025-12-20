@@ -1,5 +1,5 @@
+import { getServicesDetails } from "@/app/actions/service/fetchService";
 import ServiceUpdateFormPage from "@/app/admin/_components/ServiceUpdateForm";
-import { prisma } from "@/lib/utils";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -7,17 +7,15 @@ type Props = {
 const page = async (props: Props) => {
   const { id } = await props.params;
 
-  const service = await prisma.service.findUnique({
-    where: { id: Number(id) },
-  });
+  const service = await getServicesDetails(id);
   return (
-    <div className="w-full h-fit bg-backgroundBanner bg-no-repeat bg-cover">
+    <div className="w-full h-fit min-h-screen">
       {service && (
         <ServiceUpdateFormPage
-          id={service.id.toString()}
-          serviceName={service.serviceName}
-          description={service.description}
-          image={service.image}
+          id={service[0]?.id}
+          service_name={service[0]?.service_name}
+          description={service[0]?.description}
+          image={service[0]?.image}
         />
       )}
     </div>

@@ -1,15 +1,15 @@
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
-import { prisma } from "@/lib/utils";
+import { getMembers } from "../actions/members/fetchMember";
 
 export async function AnimatedTestimonialsDemo() {
-// fetching data from the database
-  const teamMembers = await prisma.team.findMany();
+  // fetching data from the database
+  const teamMembers = await getMembers();
   // console.log("Team Members:", teamMembers);
 
   if (!teamMembers || teamMembers.length === 0) {
     return <div>No testimonials available</div>;
   }
-  const testimonials = teamMembers.map(member => ({
+  const testimonials = teamMembers.map((member: any) => ({
     name: member.name,
     designation: member.profession,
     src: member.image,

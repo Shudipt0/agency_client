@@ -1,8 +1,7 @@
-import React from "react";
-import Common from "../_components/Common";
 import { AboutPageCarousel } from "../_components/AboutPageCarousel";
-import { prisma } from "@/lib/utils";
+import Common from "../_components/Common";
 import Testmonial from "../_components/Testmonial";
+import { getMembers } from "../actions/members/fetchMember";
 export const dynamic = "force-dynamic";
 
 const aboutDescription = {
@@ -16,7 +15,24 @@ const aboutDescription = {
 
 const AboutPage = async () => {
   // fetching data from the database
-  const teamMembers = await prisma.team.findMany();
+  // const teamMembers = [
+  //   {
+  //     id: 1,
+  //     name: "shuvo",
+  //     profession: "web developer",
+  //     image:
+  //       "https://res.cloudinary.com/dsktb64i8/image/upload/v1765785453/l6ega9lm1dxijxos82zx.webp",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "rajesh",
+  //     profession: "ui/ux designer",
+  //     image:
+  //       "https://res.cloudinary.com/dsktb64i8/image/upload/v1765785453/l6ega9lm1dxijxos82zx.webp",
+  //   },
+  // ];
+  const teamMembers = await getMembers();
+
   return (
     <div className=" w-full container mx-auto px-6 lg:px-28 mt-20 lg:mt-32 flex flex-col items-center ">
       <Common

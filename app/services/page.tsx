@@ -1,17 +1,15 @@
-import React from "react";
-import Common from "../_components/Common";
 import victorUp from "@/app/images/Vector3.svg";
-import victorDown1 from "@/app/images/Vector4.svg";
-import victorDown2 from "@/app/images/Vector4.svg";
+import {
+  default as victorDown1,
+  default as victorDown2,
+} from "@/app/images/Vector4.svg";
 import Image from "next/image";
+import Common from "../_components/Common";
 // import ServicePageCarousel from "../_components/ServicePageCarousel";
-import { prisma } from "@/lib/utils";
-import Testmonial from "../_components/Testmonial";
 import ServicePageCarouselWrapper from "../_components/ServicePageCarouselWrapper";
+import Testmonial from "../_components/Testmonial";
+import { getServices } from "../actions/service/fetchService";
 export const dynamic = "force-dynamic";
-
-
-
 
 const serviceDescription = {
   page: "Our Services",
@@ -51,7 +49,27 @@ const cartDescription = [
 
 const page = async () => {
   // Fetching services from the database can be done here if needed
-  const services = await prisma.service.findMany();
+  // const services = [
+  //   {
+  //     id: 2,
+  //     created_at: "2025-12-15T04:44:24.000Z",
+  //     serviceName: "development",
+  //     description: "we are working from heart!",
+  //     image:
+  //       "https://res.cloudinary.com/dsktb64i8/image/upload/v1765795464/ctlubnigc1um6lgstjwk.png",
+  //     image_public_id: "ctlubnigc1um6lgstjwk",
+  //   },
+  //   {
+  //     id: 3,
+  //     created_at: "2025-12-15T04:44:24.000Z",
+  //     serviceName: "development",
+  //     description: "we are working from heart!",
+  //     image:
+  //       "https://res.cloudinary.com/dsktb64i8/image/upload/v1765795464/ctlubnigc1um6lgstjwk.png",
+  //     image_public_id: "ctlubnigc1um6lgstjwk",
+  //   },
+  // ];
+  const services = await getServices();
   // console.log("services lenght", services.length);
   return (
     <div className="w-full container mx-auto px-6 lg:px-28 mt-20 lg:mt-32 flex flex-col items-center ">
@@ -121,7 +139,7 @@ const page = async () => {
 
       <div className="w-full py-28 lg:py-32 ">
         {/* <ServicePageCarousel services={services} /> */}
-        <ServicePageCarouselWrapper services={services}/>
+        <ServicePageCarouselWrapper services={services} />
       </div>
       {/* Testimonial */}
       <Testmonial />

@@ -1,12 +1,11 @@
 import { DataTable } from "@/app/_components/DataTable";
+import { getContacts } from "@/app/actions/contact/fetchContact";
 import { columns } from "@/lib/data/UserContactColumn";
 
-import { prisma } from "@/lib/utils";
-import React from "react";
 export const dynamic = "force-dynamic";
 
 const UserContactPage = async () => {
-  const userContact = await prisma.contact.findMany();
+  const userContact = await getContacts();
   // console.log(team)
   return (
     <div className="w-full min-h-screen max-h-fit text-center bg-backgroundBanner bg-no-repeat bg-cover">

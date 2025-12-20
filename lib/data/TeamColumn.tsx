@@ -1,13 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import {
-  ColumnDef,
- 
-} from "@tanstack/react-table"
-import { MoreHorizontal } from "lucide-react"
+import { ColumnDef } from "@tanstack/react-table";
+import { MoreHorizontal } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 import {
   DropdownMenu,
@@ -16,13 +12,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
-import { deleteTeamMember } from "@/app/actions/service/team"
-import Image from "next/image"
-
-
-
+import { deleteTeamMember } from "@/app/actions/members/createTeam";
+import Image from "next/image";
 
 // Define the Services type if not already defined or import it from the correct location
 type TeamMember = {
@@ -34,10 +27,12 @@ type TeamMember = {
 };
 
 export const columns: ColumnDef<TeamMember>[] = [
- {
+  {
     accessorKey: "id",
     header: "ID",
-    cell: ({ row }) => <div className="capitalize text-start">{row.getValue("id")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize text-start">{row.getValue("id")}</div>
+    ),
   },
   {
     accessorKey: "name",
@@ -48,21 +43,22 @@ export const columns: ColumnDef<TeamMember>[] = [
   },
   {
     accessorKey: "profession",
-  header: "Profession",
-    cell: ({ row }) => <div className="capitalize text-start">{row.getValue("profession")}</div>,
+    header: "Profession",
+    cell: ({ row }) => (
+      <div className="capitalize text-start">{row.getValue("profession")}</div>
+    ),
   },
   {
     accessorKey: "bio_data",
-  header: "Bio-data",
-    cell: ({ row }) => <div className="capitalize text-start">
+    header: "Bio-data",
+    cell: ({ row }) => (
+      <div className="capitalize text-start">
         {/* Display only the first three words of the description */}
-        {(row.getValue("bio_data") as string)
-          .split(" ")
-          .slice(0, 3)
-          .join(" ")}
-    </div>,
+        {(row.getValue("bio_data") as string).split(" ").slice(0, 3).join(" ")}
+      </div>
+    ),
   },
-   {
+  {
     accessorKey: "image",
     header: "Image",
     cell: ({ row }) => (
@@ -76,17 +72,17 @@ export const columns: ColumnDef<TeamMember>[] = [
       </div>
     ),
   },
-  
+
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const service = row.original
-// delete item
-      const handleDelete = async () =>{
-        const id = row.getValue("id")
-        const deleteItem = await deleteTeamMember(id)
-      }
+      const service = row.original;
+      // delete item
+      const handleDelete = async () => {
+        const id = row.getValue("id");
+        const deleteItem = await deleteTeamMember(id);
+      };
 
       return (
         <DropdownMenu>
@@ -98,15 +94,29 @@ export const columns: ColumnDef<TeamMember>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={()=> (window.location.href = `/admin/team/${row.getValue('id')}/view`)} >
+            <DropdownMenuItem
+              onClick={() =>
+                (window.location.href = `/admin/team/${row.getValue(
+                  "id"
+                )}/view`)
+              }
+            >
               View Details
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={()=> (window.location.href = `/admin/team/${row.getValue('id')}/edit`)}>Edit</DropdownMenuItem>
-            <DropdownMenuItem onClick={handleDelete} >Delete</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() =>
+                (window.location.href = `/admin/team/${row.getValue(
+                  "id"
+                )}/edit`)
+              }
+            >
+              Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleDelete}>Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      )
+      );
     },
   },
-]
+];
