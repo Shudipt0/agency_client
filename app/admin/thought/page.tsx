@@ -6,7 +6,7 @@ const ThoughtPage = async () => {
   const experts = await getExperts();
   // console.log(experts)
   return (
-    <div className="w-full min-h-screen max-h-fit text-center bg-backgroundBanner bg-no-repeat bg-cover">
+    <div className="w-full min-h-screen max-h-fit text-center ">
       <h1 className="text-[22px] font-semibold text-black/80 mt-10 ">
         Experts Table
       </h1>

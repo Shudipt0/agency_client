@@ -36,7 +36,7 @@ const ServiceUpdateFormPage = (service: Service) => {
             name="service_name"
             id="service_name"
             defaultValue={service?.service_name}
-            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-2 rounded"
           />
 
           <label htmlFor="description">Description:</label>
@@ -45,7 +45,7 @@ const ServiceUpdateFormPage = (service: Service) => {
             name="description"
             id="description"
             defaultValue={service?.description}
-            className="h-[200px] outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="h-[200px] outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-2 rounded"
           />
 
           <label htmlFor="image_url">Image: url </label>
@@ -55,7 +55,7 @@ const ServiceUpdateFormPage = (service: Service) => {
             id="image_url"
             defaultValue={service?.image}
             placeholder="Upload image here"
-            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-2 rounded"
           />
           <span>or</span>
           <div>

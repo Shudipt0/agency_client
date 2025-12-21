@@ -1,33 +1,27 @@
-
-import ProjectUpdateFormPage from '@/app/admin/_components/ProjectUpdateForm'
-import { prisma } from '@/lib/utils'
-
-import React from 'react'
-
+import { getProjects } from "@/app/actions/projects/fetchProjects";
+import ProjectUpdateFormPage from "@/app/admin/_components/ProjectUpdateForm";
 
 type Props = {
-    params: Promise<{id: string}>
-}
- const ProjectEditPage = async (props: Props) => {
-       const {id} = await props.params;
+  params: Promise<{ id: string }>;
+};
+const ProjectEditPage = async (props: Props) => {
+  const { id } = await props.params;
 
-    const projects = await prisma.project.findUnique({
-      where: {id: Number(id)},
-    });
+  const projects = await getProjects();
   return (
-    <div className="w-full h-fit bg-backgroundBanner bg-no-repeat bg-cover">
-     {projects && (
+    <div className="w-full h-fit min-h-screen">
+      {projects && (
         <ProjectUpdateFormPage
-          id={projects.id.toString()}
-          category={projects.category}
-          title={projects.title}
-          link={projects.link}
-          description={projects.description}
-          image={projects.image}
+          id={projects[0]?.id}
+          category={projects[0]?.category}
+          title={projects[0]?.title}
+          link={projects[0]?.link}
+          description={projects[0]?.description}
+          image={projects[0]?.image}
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ProjectEditPage
+export default ProjectEditPage;

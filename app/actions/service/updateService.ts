@@ -28,6 +28,7 @@ const serviceSchema = z.object({
 
 // update service
 export const upDateService = async (prevState: any, data: FormData) => {
+  const id = data.get("id") as string;
   // validate fields
   const rawImageFile = data.get("image_file");
   const parsed = serviceSchema.safeParse({
@@ -40,7 +41,6 @@ export const upDateService = async (prevState: any, data: FormData) => {
     image_url: data.get("image_url") as string,
   });
 
-  const id = data.get("id") as string;
   // console.log(typeof id);
   if (!parsed.success) {
     console.error("Validation errors:", parsed.error.flatten().fieldErrors);

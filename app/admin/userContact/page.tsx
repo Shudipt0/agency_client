@@ -8,8 +8,8 @@ const UserContactPage = async () => {
   const userContact = await getContacts();
   // console.log(team)
   return (
-    <div className="w-full min-h-screen max-h-fit text-center bg-backgroundBanner bg-no-repeat bg-cover">
-      <h1 className="text-[22px] font-semibold text-black/80 mt-10 ">
+    <div className="w-full min-h-screen max-h-fit text-center ">
+      <h1 className="text-[22px] font-semibold text-black/80 dark:text-white/80 mt-10 ">
         User Contact Table
       </h1>
       <div className="p-5">

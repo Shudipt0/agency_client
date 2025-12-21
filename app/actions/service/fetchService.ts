@@ -6,7 +6,7 @@ export const getServices = async () => {
 };
 
 export const getServicesDetails = async (id: string) => {
-  // fetch services
+  // fetch service
   const res = await fetch(`http://localhost:5000/api/v1/services/${id}`);
   const service = await res.json();
   return service;

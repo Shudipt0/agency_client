@@ -1,5 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import z from "zod";
 
 // image validate schema
@@ -22,17 +23,23 @@ const expertschema = z.object({
     .max(20, "Must be at most 20 characters long"),
   bio_data: z.string().min(5, "Must be at least 5 characters long"),
   thought: z.string().min(10, "Must be at least 10 characters long"),
-  image: imageSchema.optional(),
+  image_file: imageSchema.optional(),
+  image_url: z.string().url().optional(),
 });
 
-// add Thought
-export const addThought = async (prevState: any, data: FormData) => {
+export const upDateThought = async (prevState: any, data: FormData) => {
+  const id = data.get("id") as string;
   // validate fields
+  const rawImageFile = data.get("image_file");
   const parsed = expertschema.safeParse({
     expert_name: data.get("expert_name") as string,
     bio_data: data.get("bio_data") as string,
     thought: data.get("thought") as string,
-    image: data.get("image") as File,
+    image_file:
+      rawImageFile instanceof File && rawImageFile.size > 0
+        ? (rawImageFile as File)
+        : undefined,
+    image_url: data.get("image_url") as string,
   });
   // console.log(parsed);
   if (!parsed.success) {
@@ -47,43 +54,24 @@ export const addThought = async (prevState: any, data: FormData) => {
   payload.append("expert_name", validateFields.expert_name);
   payload.append("bio_data", validateFields.bio_data);
   payload.append("thought", validateFields.thought);
-  if (validateFields.image) {
-    payload.append("image", validateFields.image);
+  if (validateFields.image_file) {
+    payload.append("image", validateFields.image_file);
+  } else if (validateFields.image_url) {
+    payload.append("image", validateFields.image_url);
   }
-
-  try {
-    const res = await fetch(`http://localhost:5000/api/v1/experts`, {
-      method: "POST",
-      body: payload,
-      credentials: "include",
-    });
-
-    const expert = await res.json();
-    if (!res.ok) {
-      console.error("API Error:", expert);
-      return { error: expert.message || "Failed to add expert" };
-    }
-
-    return { success: true, expert };
-    // revalidatePath("/admin/experts");
-  } catch (error) {
-    console.error("Error in expert adding:", error);
-    return { error: "add expert failed" };
-  }
-};
-
-// delete expert
-export const deleteThought = async (id: string) => {
+  // update Thought
   const res = await fetch(`http://localhost:5000/api/v1/experts/${id}`, {
-    method: "DELETE",
+    method: "PUT",
+    body: payload,
     credentials: "include",
   });
 
-  const deleteItem = await res.json();
+  const expert = await res.json();
   if (!res.ok) {
-    console.error("API Error:", deleteItem);
-    return { error: deleteItem.message || "Failed to deleteItem" };
+    console.error("API Error:", expert);
+    return { error: expert.message || "Failed to add expert" };
   }
-  // console.log("successfully deleted",deleteItem);
+  // console.log('successfully updated', updateThought);
   revalidatePath("/admin/thought");
+  redirect("/admin/thought");
 };

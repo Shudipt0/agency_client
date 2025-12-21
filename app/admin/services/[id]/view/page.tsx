@@ -16,7 +16,7 @@ const serviceDetailsPage = async (props: Props) => {
       <div className="text-[24px] font-semibold text-black/80 dark:text-white/80 pt-10 underline ">
         <Link href="/admin/services">Back</Link>
       </div>
-      <div className="w-full p-20 space-y-6  ">
+      <div className="w-full p-20 space-y-6 ">
         <h4 className="text-lg font-semibold text-black/60 dark:text-white/80 bg-slate-100 dark:bg-slate-800 px-8 py-3 rounded shadow-sm">
           Id: {service[0]?.id}
         </h4>

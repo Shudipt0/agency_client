@@ -1,5 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import z from "zod";
 
 // image validate schema
@@ -23,18 +24,24 @@ const projectSchema = z.object({
   category: z.string().min(3, "Must be at least 3 characters long"),
   description: z.string().min(10, "Must be at least 10 characters long"),
   link: z.string().optional(),
-  image: imageSchema.optional(),
+  image_file: imageSchema.optional(),
+  image_url: z.string().url().optional(),
 });
 
-// add projects
-export const addProject = async (prevState: any, data: FormData) => {
+export const upDateProject = async (prevState: any, data: FormData) => {
+  const id = data.get("id") as string;
   // validate fields
+  const rawImageFile = data.get("image_file");
   const parsed = projectSchema.safeParse({
     title: data.get("title") as string,
     category: data.get("category") as string,
     description: data.get("description") as string,
     link: data.get("link") as string,
-    image: data.get("image") as File,
+    image_file:
+      rawImageFile instanceof File && rawImageFile.size > 0
+        ? (rawImageFile as File)
+        : undefined,
+    image_url: data.get("image_url") as string,
   });
   // console.log(parsed);
   if (!parsed.success) {
@@ -52,44 +59,24 @@ export const addProject = async (prevState: any, data: FormData) => {
   if (validateFields.link) {
     payload.append("link", validateFields.link);
   }
-
-  if (validateFields.image) {
-    payload.append("image", validateFields.image);
+  if (validateFields.image_file) {
+    payload.append("image", validateFields.image_file);
+  } else if (validateFields.image_url) {
+    payload.append("image", validateFields.image_url);
   }
-
-  try {
-    const res = await fetch(`http://localhost:5000/api/v1/projects`, {
-      method: "POST",
-      body: payload,
-      credentials: "include",
-    });
-
-    const projects = await res.json();
-    if (!res.ok) {
-      console.error("API Error:", projects);
-      return { error: projects.message || "Failed to add projects" };
-    }
-
-    return { success: true, projects };
-    // revalidatePath("/admin/userss");
-  } catch (error) {
-    console.error("Error in projects adding:", error);
-    return { error: "add projects failed" };
-  }
-};
-
-// delete projects
-export const deleteProject = async (id: string) => {
+  // update projects
   const res = await fetch(`http://localhost:5000/api/v1/projects/${id}`, {
-    method: "DELETE",
+    method: "PUT",
+    body: payload,
     credentials: "include",
   });
 
-  const deleteItem = await res.json();
+  const project = await res.json();
   if (!res.ok) {
-    console.error("API Error:", deleteItem);
-    return { error: deleteItem.message || "Failed to deleteItem" };
+    console.error("API Error:", project);
+    return { error: project.message || "Failed to add project" };
   }
-  // console.log("successfully deleted",deleteItem);
+  // console.log('successfully updated', updateusers);
   revalidatePath("/admin/projects");
+  redirect("/admin/projects");
 };

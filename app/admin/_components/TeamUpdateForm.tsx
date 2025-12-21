@@ -1,8 +1,8 @@
 "use client";
 
-import ImageUpload from "@/app/_components/ImageUpload";
-import { upDateTeamMember } from "@/app/actions/members/createTeam";
-import { useImageContext } from "@/context/ImageContext";
+import SingleFileDrop from "@/app/_components/SingleFileDrop";
+import { upDateTeamMember } from "@/app/actions/members/updateMember";
+import { useActionState } from "react";
 
 interface TeamMember {
   id: string;
@@ -12,14 +12,13 @@ interface TeamMember {
   image: string;
 }
 const TeamUpdateFormPage = (teamMember: TeamMember) => {
-  const { imageUrl } = useImageContext();
-
+  const [state, action, isPending] = useActionState(upDateTeamMember, null);
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="w-[700px]">
         <form
-          action={upDateTeamMember}
-          className="w-full bg-green-100 border rounded-lg flex flex-col gap-4 p-8 "
+          action={action}
+          className="w-full bg-gray-100 dark:bg-gray-800 border rounded-lg flex flex-col gap-4 p-8 "
         >
           <input
             type="hidden"
@@ -35,7 +34,7 @@ const TeamUpdateFormPage = (teamMember: TeamMember) => {
             name="name"
             id="name"
             defaultValue={teamMember?.name}
-            className="outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-1 rounded"
           />
 
           <label htmlFor="profession">Profession:</label>
@@ -45,32 +44,33 @@ const TeamUpdateFormPage = (teamMember: TeamMember) => {
             name="profession"
             id="profession"
             defaultValue={teamMember?.profession}
-            className="outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-1 rounded"
           />
           <label htmlFor="bio_data">Bio-Data:</label>
           <textarea
             name="bio_data"
             id="bio_data"
             defaultValue={teamMember?.bio_data}
-            className="h-[200px] outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="h-[200px] outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-1 rounded"
           />
 
           <label htmlFor="image">Image: url </label>
           <input
             type="text"
-            name="image"
-            id="image"
-            defaultValue={imageUrl ?? teamMember?.image}
+            name="image_url"
+            id="image_url"
+            defaultValue={teamMember?.image}
             placeholder="Upload image here"
-            className="outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-1 rounded"
           />
           <span>or</span>
           <div>
-            <ImageUpload />
+            <SingleFileDrop image="image_file" />
           </div>
           <button
             type="submit"
-            className="px-3 py-2 text-sm text-white font-bold bg-blue-500 rounded-lg"
+            disabled={isPending}
+            className="px-3 py-2 text-sm text-white font-bold bg-blue-500 hover:bg-blue-700 rounded-lg"
           >
             Update
           </button>

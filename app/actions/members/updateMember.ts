@@ -1,5 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import z from "zod";
 
 // image validate schema
@@ -22,17 +23,23 @@ const memberSchema = z.object({
     .max(50, "Must be at most 50 characters long"),
   profession: z.string().min(10, "Must be at least 10 characters long"),
   bio_data: z.string().min(10, "Must be at least 10 characters long"),
-  image: imageSchema.optional(),
+  image_file: imageSchema.optional(),
+  image_url: z.string().url().optional(),
 });
 
-// add service
-export const addTeamMember = async (prevState: any, data: FormData) => {
+export const upDateTeamMember = async (prevState: any, data: FormData) => {
+  const id = data.get("id") as string;
   // validate fields
+  const rawImageFile = data.get("image_file");
   const parsed = memberSchema.safeParse({
     name: data.get("name") as string,
     profession: data.get("profession") as string,
     bio_data: data.get("bio_data") as string,
-    image: data.get("image") as File,
+    image_file:
+      rawImageFile instanceof File && rawImageFile.size > 0
+        ? (rawImageFile as File)
+        : undefined,
+    image_url: data.get("image_url") as string,
   });
   // console.log(parsed);
   if (!parsed.success) {
@@ -47,42 +54,25 @@ export const addTeamMember = async (prevState: any, data: FormData) => {
   payload.append("name", validateFields.name);
   payload.append("profession", validateFields.profession);
   payload.append("bio_data", validateFields.bio_data);
-  if (validateFields.image) {
-    payload.append("image", validateFields.image);
+  if (validateFields.image_file) {
+    payload.append("image", validateFields.image_file);
+  } else if (validateFields.image_url) {
+    payload.append("image", validateFields.image_url);
   }
-
-  try {
-    const res = await fetch(`http://localhost:5000/api/v1/users`, {
-      method: "POST",
-      body: payload,
-      credentials: "include",
-    });
-
-    const member = await res.json();
-    if (!res.ok) {
-      console.error("API Error:", member);
-      return { error: member.message || "Failed to add member" };
-    }
-
-    return { success: true, member };
-  } catch (error) {
-    console.error("Error in service adding:", error);
-    return { error: "add service failed" };
-  }
-};
-
-// delete service
-export const deleteTeamMember = async (id: string) => {
+  // update service
   const res = await fetch(`http://localhost:5000/api/v1/users/${id}`, {
-    method: "DELETE",
+    method: "PUT",
+    body: payload,
     credentials: "include",
   });
 
-  const deleteItem = await res.json();
+  const member = await res.json();
   if (!res.ok) {
-    console.error("API Error:", deleteItem);
-    return { error: deleteItem.message || "Failed to deleteItem" };
+    console.error("API Error:", member);
+    return { error: member.message || "Failed to add member" };
   }
-  // console.log("successfully deleted",deleteItem);
+
+  // console.log('successfully updated', updateService);
   revalidatePath("/admin/team");
+  redirect("/admin/team");
 };

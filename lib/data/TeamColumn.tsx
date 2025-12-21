@@ -80,7 +80,7 @@ export const columns: ColumnDef<TeamMember>[] = [
       const service = row.original;
       // delete item
       const handleDelete = async () => {
-        const id = row.getValue("id");
+        const id = row.getValue("id") as string;
         const deleteItem = await deleteTeamMember(id);
       };
 

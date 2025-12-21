@@ -19,8 +19,9 @@ import Image from "next/image";
 // Define the Services type if not already defined or import it from the correct location
 type Thoughts = {
   id: string;
-  serviceName: string;
-  description: string;
+  expert_name: string;
+  bio_data: string;
+  thought: string;
   image: string;
 };
 
@@ -33,12 +34,10 @@ export const columns: ColumnDef<Thoughts>[] = [
     ),
   },
   {
-    accessorKey: "experts_name",
-    header: "Experts Name",
+    accessorKey: "expert_name",
+    header: "Expert Name",
     cell: ({ row }) => (
-      <div className="capitalize text-start">
-        {row.getValue("experts_name")}
-      </div>
+      <div className="capitalize text-start">{row.getValue("expert_name")}</div>
     ),
   },
 
@@ -81,7 +80,7 @@ export const columns: ColumnDef<Thoughts>[] = [
       const service = row.original;
       // delete item
       const handleDelete = async () => {
-        const id = row.getValue("id");
+        const id = row.getValue("id") as string;
         const deleteItem = await deleteThought(id);
       };
 

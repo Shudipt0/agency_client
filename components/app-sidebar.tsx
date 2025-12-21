@@ -1,8 +1,7 @@
-'use client'
-import * as React from "react"
+"use client";
+import * as React from "react";
 
-import { SearchForm } from "@/components/search-form"
-import { VersionSwitcher } from "@/components/version-switcher"
+import { SearchForm } from "@/components/search-form";
 import {
   Sidebar,
   SidebarContent,
@@ -14,8 +13,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import { usePathname } from "next/navigation"
+} from "@/components/ui/sidebar";
+import { usePathname } from "next/navigation";
 
 // This is sample data.
 const data = {
@@ -38,31 +37,30 @@ const data = {
       title: "Service",
       url: "#",
       items: [
-         {
-          title: "View Services " ,
+        {
+          title: "View Services ",
           url: "/admin/services",
         },
         {
           title: "Add Service",
           url: "/admin/services/addService",
-        },      
-     ],
+        },
+      ],
     },
 
-        {
+    {
       title: "Our Team",
       url: "#",
       items: [
         {
-          title: "View Team " ,
+          title: "View Team ",
           url: "/admin/team",
-         
         },
         {
           title: "Add Team Member",
           url: "/admin/team/addTeamMember",
-        },      
-     ],
+        },
+      ],
     },
 
     {
@@ -70,31 +68,29 @@ const data = {
       url: "#",
       items: [
         {
-          title: "View Projects " ,
+          title: "View Projects ",
           url: "/admin/projects",
-         
         },
         {
           title: "Add Projects",
           url: "/admin/projects/addProject",
-        },      
-     ],
+        },
+      ],
     },
-    
+
     {
       title: "Experts Thought",
       url: "#",
       items: [
         {
-          title: "View All Thought " ,
+          title: "View All Thought ",
           url: "/admin/thought",
-         
         },
         {
           title: "Add Thoughts",
           url: "/admin/thought/addThought",
-        },      
-     ],
+        },
+      ],
     },
 
     {
@@ -102,24 +98,41 @@ const data = {
       url: "#",
       items: [
         {
-           title: "View Users Contact",
-           url: "/admin/userContact",
-        }
+          title: "View Users Contact",
+          url: "/admin/userContact",
+        },
       ],
     },
-    
+    {
+      title: "Project Creators",
+      url: "#",
+      items: [
+        {
+          title: "View All Project Creators ",
+          url: "/admin/projects_creator",
+        },
+        {
+          title: "Add Relation",
+          url: "/admin/projects_creator/addRelation",
+        },
+      ],
+    },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-    const pathName = usePathname();
+  const pathName = usePathname();
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-      <div className="flex items-end gap-4">
-        <h1 className="text-[22px] text-black dark:text-white font-bold " >Dashboard</h1>
-        <h3 className="text-[16px] font-serif text-blue-600 dark:text-white ">GreenDev.</h3>
-      </div>
+        <div className="flex items-end gap-4">
+          <h1 className="text-[22px] text-black dark:text-white font-bold ">
+            Dashboard
+          </h1>
+          <h3 className="text-[16px] font-serif text-blue-600 dark:text-white ">
+            GreenDev.
+          </h3>
+        </div>
         <SearchForm />
       </SidebarHeader>
       <SidebarContent>
@@ -131,7 +144,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <SidebarMenu>
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild className={`${pathName === item.url? 'bg-blue-200 hover:bg-blue-200 dark:bg-gray-500 ': ''}`} >
+                    <SidebarMenuButton
+                      asChild
+                      className={`${
+                        pathName === item.url
+                          ? "bg-blue-200 hover:bg-blue-200 dark:bg-gray-500 "
+                          : ""
+                      }`}
+                    >
                       <a href={item.url}>{item.title}</a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -143,5 +163,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

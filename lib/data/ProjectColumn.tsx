@@ -94,7 +94,7 @@ export const columns: ColumnDef<Projects>[] = [
       const service = row.original;
       // delete item
       const handleDelete = async () => {
-        const id = row.getValue("id");
+        const id = row.getValue("id") as string;
         const deleteItem = await deleteProject(id);
       };
 

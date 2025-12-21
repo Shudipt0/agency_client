@@ -1,8 +1,8 @@
 "use client";
 
-import ImageUpload from "@/app/_components/ImageUpload";
-import { upDateProject } from "@/app/actions/projects/createProjects";
-import { useImageContext } from "@/context/ImageContext";
+import SingleFileDrop from "@/app/_components/SingleFileDrop";
+import { upDateProject } from "@/app/actions/projects/updateProject";
+import { useActionState } from "react";
 
 interface Projects {
   id: string;
@@ -13,14 +13,14 @@ interface Projects {
   image: string;
 }
 const ProjectUpdateFormPage = (projects: Projects) => {
-  const { imageUrl } = useImageContext();
+  const [state, action, isPending] = useActionState(upDateProject, null);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="w-[700px]">
         <form
-          action={upDateProject}
-          className="w-full bg-green-100 border rounded-lg flex flex-col gap-4 p-8 "
+          action={action}
+          className="w-full bg-gray-100 dark:bg-gray-800 border rounded-lg flex flex-col gap-4 p-8 "
         >
           <input
             type="hidden"
@@ -36,7 +36,7 @@ const ProjectUpdateFormPage = (projects: Projects) => {
             name="category"
             id="category"
             defaultValue={projects?.category}
-            className="outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-2 rounded"
           />
 
           <label htmlFor="title">Title:</label>
@@ -46,7 +46,7 @@ const ProjectUpdateFormPage = (projects: Projects) => {
             name="title"
             id="title"
             defaultValue={projects?.title}
-            className="outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-2 rounded"
           />
           <label htmlFor="link">Project Link:</label>
           <input
@@ -54,32 +54,33 @@ const ProjectUpdateFormPage = (projects: Projects) => {
             name="link"
             id="link"
             defaultValue={projects?.link}
-            className="outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-2 rounded"
           />
           <label htmlFor="description">Description:</label>
           <textarea
             name="description"
             id="description"
             defaultValue={projects?.description}
-            className="h-[200px] outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="h-[200px] outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-2 rounded"
           />
 
-          <label htmlFor="image">Image: url </label>
+          <label htmlFor="image_url">Image: url </label>
           <input
             type="text"
-            name="image"
-            id="image"
-            defaultValue={imageUrl ?? projects?.image}
+            name="image_url"
+            id="image_url"
+            defaultValue={projects?.image}
             placeholder="Upload image here"
-            className="outline-none border-2 border-gray-300 bg-white text-[16px] font-semibold px-5 py-1 rounded"
+            className="outline-none border-2 border-gray-300 bg-white dark:bg-gray-600 dark:text-white text-[16px] font-semibold px-5 py-2 rounded"
           />
           <span>or</span>
           <div>
-            <ImageUpload />
+            <SingleFileDrop image="image_file" />
           </div>
           <button
             type="submit"
-            className="px-3 py-2 text-sm text-white font-bold bg-blue-500 rounded-lg"
+            disabled={isPending}
+            className="px-3 py-2 text-sm text-white font-bold bg-blue-500 hover:bg-blue-700 rounded-lg"
           >
             Update
           </button>
