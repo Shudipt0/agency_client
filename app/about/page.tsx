@@ -14,23 +14,6 @@ const aboutDescription = {
 };
 
 const AboutPage = async () => {
-  // fetching data from the database
-  // const teamMembers = [
-  //   {
-  //     id: 1,
-  //     name: "shuvo",
-  //     profession: "web developer",
-  //     image:
-  //       "https://res.cloudinary.com/dsktb64i8/image/upload/v1765785453/l6ega9lm1dxijxos82zx.webp",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "rajesh",
-  //     profession: "ui/ux designer",
-  //     image:
-  //       "https://res.cloudinary.com/dsktb64i8/image/upload/v1765785453/l6ega9lm1dxijxos82zx.webp",
-  //   },
-  // ];
   const teamMembers = await getMembers();
 
   return (

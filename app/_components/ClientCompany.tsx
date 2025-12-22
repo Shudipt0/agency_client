@@ -82,7 +82,7 @@ const ClientCompany = ({
   ],
 }: LogosProps) => {
   return (
-    <section className="py-16 md:py-20 lg:py-28">
+    <section className="container mx-auto px-6 py-16 md:py-20 lg:py-28">
       <div className="container flex flex-col justify-center text-start">
         <h1 className="mb-8 text-2xl font-bold text-pretty lg:text-4xl">
           {heading}

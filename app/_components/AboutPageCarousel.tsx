@@ -1,6 +1,5 @@
-'use client'
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -9,6 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
+import Link from "next/link";
 
 type TeamMember = {
   id: string | number;
@@ -36,7 +36,10 @@ export function AboutPageCarousel({ teamMembers }: AboutPageCarouselProps) {
             key={member.id}
             className="basis-1/2 md:basis-1/3 lg:basis-1/4"
           >
-            <div className="w-[160px] flex flex-col gap-4 ">
+            <Link
+              href={`/about/${member.id}`}
+              className="w-[160px] flex flex-col gap-4 "
+            >
               <Image
                 src={member.image}
                 alt={member.name}
@@ -48,7 +51,7 @@ export function AboutPageCarousel({ teamMembers }: AboutPageCarouselProps) {
               <p className="text-[18px] text-[#0E0E2C]/60 dark:text-white/80 ">
                 {member.profession}
               </p>
-            </div>
+            </Link>
           </CarouselItem>
         ))}
       </CarouselContent>

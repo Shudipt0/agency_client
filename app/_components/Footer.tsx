@@ -73,9 +73,9 @@ const Footer = ({
 }: Footer2Props) => {
   return (
     <section className=" mt-32 ">
-      <div className="w-full">
-        <footer>
-          <div className=" grid grid-cols-2 gap-8 lg:grid-cols-6 px-6 lg:px-28 py-10 lg:pt-14 lg:pb-8 bg-[#A0A4AB]/10 dark:bg-[#0A0A0A]">
+      <div className="w-full bg-[#A0A4AB]/10 dark:bg-[#0A0A0A]">
+        <footer className="container mx-auto">
+          <div className=" grid grid-cols-2 gap-8 lg:grid-cols-6 px-6 lg:px-28 py-10 lg:pt-14 lg:pb-8">
             <div className="col-span-2 mb-8 lg:mb-0">
               <div className="flex items-center gap-2 lg:justify-start">
                 <p className="text-xl font-semibold">{logo.title}</p>
@@ -98,7 +98,9 @@ const Footer = ({
               </div>
             ))}
           </div>
-          <div className=" flex flex-col justify-between gap-4 border-t py-5 text-white bg-[#0E0E2C] text-sm font-medium text-muted-foreground md:flex-row md:items-center px-6 lg:px-28">
+        </footer>
+        <div className="w-full bg-[#0E0E2C]">
+          <div className="container mx-auto flex flex-col justify-between gap-4 border-t py-5 text-white text-sm font-medium text-muted-foreground md:flex-row md:items-center px-6 lg:px-28">
             <p>{copyright}</p>
             <ul className="flex gap-4">
               {bottomLinks.map((link, linkIdx) => (
@@ -108,7 +110,7 @@ const Footer = ({
               ))}
             </ul>
           </div>
-        </footer>
+        </div>
       </div>
     </section>
   );

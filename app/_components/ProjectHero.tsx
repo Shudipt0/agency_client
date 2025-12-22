@@ -9,7 +9,7 @@ const ProjectHero = async () => {
 
   // console.log("Projects:", projects);
   return (
-    <section className="py-6 lg:pb-14 lg:pt-4">
+    <section className="container mx-auto px-6 py-6 lg:pb-14 lg:pt-4">
       <div className="w-full lg:w-[540px] space-y-4 lg:space-y-8">
         <h4 className=" text-[16px] lg:text-[22px] font-semibold text-blue-600 dark:text-white ">
           The work we realised
@@ -22,7 +22,11 @@ const ProjectHero = async () => {
       <div className="w-full flex flex-col items-center justify-center py-20 space-y-8 lg:space-y-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-16 lg:gap-y-3 justify-center items-center">
           {projects.map((project: any) => (
-            <div key={project.id} className="  col-span-1">
+            <Link
+              href={`/projects/${project.id}`}
+              key={project.id}
+              className="col-span-1"
+            >
               <Image
                 src={project?.image}
                 alt={project.title}
@@ -38,7 +42,7 @@ const ProjectHero = async () => {
                   {project.title}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <Link href="/allProjects">

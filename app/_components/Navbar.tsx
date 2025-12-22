@@ -1,10 +1,10 @@
 "use client";
 
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { FaTimes } from "react-icons/fa";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import ThemeToggleButton from "./Theme-toggleButton";
 
 const logo = {
@@ -41,10 +41,10 @@ const Navbar = ({ mobileMenu, setMobileMenu }: NavbarProps) => {
   const pathName = usePathname();
 
   return (
-    <section className="w-full ">
-      <div className="container mx-auto px-6 md:px-28 py-4 fixed top-0 z-50 shadow bg-white dark:bg-[#090909] transition-all ease-in-out duration-300">
+    <section className="w-full">
+      <div className="w-full px-6 md:px-28 py-4 fixed bg-white dark:bg-[#090909] z-50 shadow top-0 transition-all ease-in-out duration-300">
         {/* Desktop Menu */}
-        <nav className=" hidden justify-between lg:flex ">
+        <nav className=" hidden py-4 container mx-auto md:flex justify-between">
           {/* Logo */}
           <div>
             <Link
@@ -114,44 +114,45 @@ const Navbar = ({ mobileMenu, setMobileMenu }: NavbarProps) => {
           </div>
         </div>
       </div>
-      {/* Mobile Dropdown Menu */}
-    
-        <div
-          className={` lg:hidden top-14 flex flex-col items-center justify-center gap-4 bg-white dark:bg-[#262A31] shadow-md fixed w-full z-50 overflow-hidden transition-all ease-in-out duration-300 ${
-            mobileMenu ? " h-[400px]" : "h-0"
-          } `}
-        >
-          {menu.map((nav) => (
-            <Link
-              key={nav.title}
-              href={nav.url}
-              className={`px-4 py-2 text-[16px] font-bold transition-colors hover:text-black ${
-                pathName === nav.url
-                  ? "text-black dark:text-white "
-                  : "text-[#0E0E2C]/60 dark:text-white/60 "
-              }`}
-              onClick={() => setMobileMenu(false)}
-            >
-              {nav.title}
-            </Link>
-          ))}
 
-          <div className="flex gap-2 mt-4 ">
-            {/* sign in / sign up buttons */}
-            <SignedOut>
-              <button className="px-4 py-1 text-[14px] font-bold text-white bg-blue-500 rounded transition-colors hover:bg-blue-600">
-                <Link href="/sign-in">Log In</Link>
-              </button>
-              <button className="px-4 py-1 text-[14px] font-bold text-white bg-gray-500 rounded transition-colors hover:bg-gray-600">
-                <Link href="/sign-up">Sign Up</Link>
-              </button>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </div>
+      {/* Mobile Dropdown Menu */}
+
+      <div
+        className={` lg:hidden top-14 flex flex-col items-center justify-center gap-4 bg-white dark:bg-[#262A31] shadow-md fixed w-full z-50 overflow-hidden transition-all ease-in-out duration-300 ${
+          mobileMenu ? " h-[400px]" : "h-0"
+        } `}
+      >
+        {menu.map((nav) => (
+          <Link
+            key={nav.title}
+            href={nav.url}
+            className={`px-4 py-2 text-[16px] font-bold transition-colors hover:text-black ${
+              pathName === nav.url
+                ? "text-black dark:text-white "
+                : "text-[#0E0E2C]/60 dark:text-white/60 "
+            }`}
+            onClick={() => setMobileMenu(false)}
+          >
+            {nav.title}
+          </Link>
+        ))}
+
+        <div className="flex gap-2 mt-4 ">
+          {/* sign in / sign up buttons */}
+          <SignedOut>
+            <button className="px-4 py-1 text-[14px] font-bold text-white bg-blue-500 rounded transition-colors hover:bg-blue-600">
+              <Link href="/sign-in">Log In</Link>
+            </button>
+            <button className="px-4 py-1 text-[14px] font-bold text-white bg-gray-500 rounded transition-colors hover:bg-gray-600">
+              <Link href="/sign-up">Sign Up</Link>
+            </button>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
-      
+      </div>
+
       {/* End Mobile Dropdown Menu */}
     </section>
   );

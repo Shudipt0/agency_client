@@ -1,6 +1,3 @@
-import image1 from "@/app/images/project1.svg";
-import image2 from "@/app/images/project2.svg";
-import image3 from "@/app/images/project4.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
@@ -24,6 +21,7 @@ const numbering = [
 ];
 const projectPage = async () => {
   const projects = await getProjects();
+  // console.log(projects);
 
   return (
     <div className="w-full container mx-auto px-6 lg:px-28 mt-20 lg:mt-32 flex flex-col items-center  ">
@@ -62,128 +60,106 @@ const projectPage = async () => {
       {/* showcase items */}
 
       <div className="w-full pt-20 lg:pt-32 lg:space-y-28 ">
-        {/* part 1 */}
-        <div className=" w-full flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-0 ">
-          {/* left site */}
-          <div className="lg:w-[540px]  mt-10 md:mt-0 space-y-6">
-            <h3 className="text-[16px] lg:text-[22px] font-bold text-blue-500 dark:text-white leading-tight">
-              Web / App Development
-            </h3>
-            <h1 className="text-[22px] lg:text-[40px] text-black dark:text-white/80 font-bold leading-tight">
-              Delex Relay , a delivery platfrome
-            </h1>
-            <p className="text-[18px] lg:text-[22px] text-[#0E0E2C]/60 dark:text-white/60">
-              Delex is a Delivery Platforme for bussiness owner And indivudial
-              who want to send packages from a point to an other ,Delex offer a
-              tracking system too
-            </p>
-            <div className="hidden lg:flex">
-              <Link href="#">
-                <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
-                  Check the project
-                  <span>
-                    <IoIosArrowForward size={20} />
-                  </span>
-                </button>
-              </Link>
+        {projects?.map((item: any, index: number) => {
+          const isEven = index % 2 === 0;
+          return isEven ? (
+            <div
+              key={item.id}
+              className=" w-full flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-0 "
+            >
+              {/* left site */}
+              <div className="lg:w-[540px]  mt-10 md:mt-0 space-y-6">
+                <h3 className="text-[16px] lg:text-[22px] font-bold text-blue-500 dark:text-white leading-tight">
+                  {item?.category}
+                </h3>
+                <h1 className="text-[22px] lg:text-[40px] text-black dark:text-white/80 font-bold leading-tight">
+                  {item?.title}
+                </h1>
+                <p className="text-[18px] lg:text-[22px] text-[#0E0E2C]/60 dark:text-white/60">
+                  {item?.description}
+                </p>
+                <div className="hidden lg:flex">
+                  <Link href={`/projects/${item.id}`}>
+                    <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
+                      Check the project
+                      <span>
+                        <IoIosArrowForward size={20} />
+                      </span>
+                    </button>
+                  </Link>
+                </div>
+              </div>
+              {/* right site */}
+              <div className="w-full lg:w-[540px]  ">
+                <Image
+                  src={item?.image}
+                  alt={item?.title}
+                  width={540}
+                  height={295}
+                  className="w-full lg:w-[540px] "
+                />
+              </div>
+              <div className="w-full flex justify-center lg:hidden">
+                <Link href={`/projects/${item.id}`}>
+                  <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
+                    Check the project
+                    <span>
+                      <IoIosArrowForward size={20} />
+                    </span>
+                  </button>
+                </Link>
+              </div>
             </div>
-          </div>
-          {/* right site */}
-          <div className="w-full lg:w-[540px]  ">
-            <Image src={image1} alt="image1" className="w-full lg:w-[540px] " />
-          </div>
-          <div className="w-full flex justify-center lg:hidden">
-            <Link href="#">
-              <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
-                Check the project
-                <span>
-                  <IoIosArrowForward size={20} />
-                </span>
-              </button>
-            </Link>
-          </div>
-        </div>
-        {/* part 2 */}
-        <div className=" w-full flex flex-col-reverse lg:flex-row justify-between items-center gap-12 lg:gap-0 pt-20 lg:pt-0">
-          <div className="w-full flex justify-center lg:hidden">
-            <Link href="#">
-              <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
-                Check the project
-                <span>
-                  <IoIosArrowForward size={20} />
-                </span>
-              </button>
-            </Link>
-          </div>
-          {/* left site */}
-          <div className="w-full  mt-10 md:mt-0 lg:w-[540px]  ">
-            <Image src={image2} alt="image1" className="w-full lg:w-[540px]" />
-          </div>
-          {/* right site */}
-          <div className="lg:w-[540px] space-y-6">
-            <h3 className="text-[16px] lg:text-[22px] font-bold text-blue-500 dark:text-white leading-tight">
-              UI/UX Design
-            </h3>
-            <h1 className="text-[22px] lg:text-[40px] text-black dark:text-white font-bold leading-tight">
-              Cooke Me ,Fresh food At your Home
-            </h1>
-            <p className="text-[18px] lg:text-[22px] text-[#0E0E2C]/60 dark:text-white/60">
-              Cooke me is an platform that offer fresh meal with a cheap price
-              and allow indivudial to sell their meals
-            </p>
-            <div className="hidden lg:flex">
-              <Link href="#">
-                <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
-                  Check the project
-                  <span>
-                    <IoIosArrowForward size={20} />
-                  </span>
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
+          ) : (
+            <div
+              key={item.id}
+              className=" w-full flex flex-col-reverse lg:flex-row justify-between items-center gap-12 lg:gap-0 pt-20 lg:pt-0"
+            >
+              <div className="w-full flex justify-center lg:hidden">
+                <Link href={`/projects/${item.id}`}>
+                  <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
+                    Check the project
+                    <span>
+                      <IoIosArrowForward size={20} />
+                    </span>
+                  </button>
+                </Link>
+              </div>
 
-        {/* part 3 */}
-        <div className=" w-full flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-0 pt-20 lg:pt-0">
-          {/* left site */}
-          <div className="lg:w-[540px]  mt-10 md:mt-0 space-y-6">
-            <h3 className="text-[16px] lg:text-[22px] font-bold text-blue-500 dark:text-white leading-tight">
-              Web / App Development
-            </h3>
-            <h1 className="text-[22px] lg:text-[40px] text-black dark:text-white font-bold leading-tight">
-              ADOC,Your Online Medical Appoinments
-            </h1>
-            <p className="text-[18px] lg:text-[22px] text-[#0E0E2C]/60 dark:text-white/60">
-              ADOC Is an online Medical appoinment That allow user To take an
-              appoinment with a doctor , it alos work as a medical files Holder
-            </p>
-            <div className="hidden lg:flex">
-              <Link href="#">
-                <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
-                  Check the project
-                  <span>
-                    <IoIosArrowForward size={20} />
-                  </span>
-                </button>
-              </Link>
+              <div className="w-full  mt-10 md:mt-0 lg:w-[540px]  ">
+                <Image
+                  src={item?.image}
+                  alt={item.title}
+                  width={540}
+                  height={295}
+                  className="w-full lg:w-[540px]"
+                />
+              </div>
+              {/* right site */}
+              <div className="lg:w-[540px] space-y-6">
+                <h3 className="text-[16px] lg:text-[22px] font-bold text-blue-500 dark:text-white leading-tight">
+                  {item?.category}
+                </h3>
+                <h1 className="text-[22px] lg:text-[40px] text-black dark:text-white font-bold leading-tight">
+                  {item?.title}
+                </h1>
+                <p className="text-[18px] lg:text-[22px] text-[#0E0E2C]/60 dark:text-white/60">
+                  {item?.description}
+                </p>
+                <div className="hidden lg:flex">
+                  <Link href={`/projects/${item.id}`}>
+                    <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
+                      Check the project
+                      <span>
+                        <IoIosArrowForward size={20} />
+                      </span>
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
-          {/* right site */}
-          <div className="w-full lg:w-[540px]  ">
-            <Image src={image3} alt="image1" className="w-full lg:w-[540px] " />
-          </div>
-          <div className="w-full flex justify-center lg:hidden">
-            <Link href="#">
-              <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
-                Check the project
-                <span>
-                  <IoIosArrowForward size={20} />
-                </span>
-              </button>
-            </Link>
-          </div>
-        </div>
+          );
+        })}
       </div>
 
       {/* button */}

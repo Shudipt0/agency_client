@@ -6,7 +6,7 @@ const Services = async () => {
   // console.log(services);
 
   return (
-    <section className="py-10">
+    <section className="container mx-auto px-6 py-10">
       <div className="py-4">
         <h4 className="text-[16px] lg:text-[22px] font-semibold text-blue-600 dark:text-white ">
           The Services We Offers

@@ -1,8 +1,8 @@
-import { ArrowDownRight } from "lucide-react";
+import heroBanner from "@/app/images/heroBanner.jpg";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import heroBanner from '@/app/images/heroBanner.jpg'
+import { ArrowDownRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface HeroProps {
   welcoming?: string;
@@ -36,8 +36,8 @@ const HeroBannner = ({
   },
 }: HeroProps) => {
   return (
-    <section className="relative">
-      <div className="  container grid items-center gap-10 lg:grid-cols-2 lg:gap-20 ">
+    <section className="relative container mx-auto px-6 ">
+      <div className=" grid items-center gap-10 lg:grid-cols-2 lg:gap-20 ">
         <div className="mx-auto flex flex-col items-start text-start md:ml-auto lg:max-w-3xl  lg:text-left">
           <h4 className="text-[16px] lg:text-[22px] text-blue-500 dark:text-white font-bold ">
             {welcoming}

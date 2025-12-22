@@ -1,13 +1,8 @@
-import { AppSidebar } from "@/components/app-sidebar"
-
-
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 interface Props {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 export default function Page(props: Props) {
   return (
@@ -19,9 +14,7 @@ export default function Page(props: Props) {
       }
     >
       <AppSidebar />
-      <SidebarInset >      
-       {props.children}
-      </SidebarInset>
+      <SidebarInset>{props.children}</SidebarInset>
     </SidebarProvider>
-  )
+  );
 }

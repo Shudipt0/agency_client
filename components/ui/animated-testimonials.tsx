@@ -2,10 +2,12 @@
 
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
+import Link from "next/link";
 
 import { useEffect, useState } from "react";
 
 type Testimonial = {
+  id: string;
   name: string;
   designation: string;
   src: string;
@@ -116,12 +118,17 @@ export const AnimatedTestimonials = ({
               ease: "easeInOut",
             }}
           >
-            <h3 className="text-2xl font-bold text-black dark:text-white">
-              {testimonials[active].name}
-            </h3>
-            <p className="text-sm text-gray-500 dark:text-neutral-500">
-              {testimonials[active].designation}
-            </p>
+            <Link
+              href={`/about/${testimonials[active].id}`}
+              className="w-[160px] flex flex-col gap-4 "
+            >
+              <h3 className="text-2xl font-bold text-black dark:text-white">
+                {testimonials[active].name}
+              </h3>
+              <p className="text-sm text-gray-500 dark:text-neutral-500">
+                {testimonials[active].designation}
+              </p>
+            </Link>
           </motion.div>
           <div className="flex gap-4 pt-12 md:pt-0">
             <button

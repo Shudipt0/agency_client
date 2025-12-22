@@ -2,36 +2,6 @@ import ProjectShowcaseCart from "../_components/ProjectShowcaseCart";
 import { getProjects } from "../actions/projects/fetchProjects";
 export const dynamic = "force-dynamic";
 
-// const projects = [
-//   {
-//     id: 1,
-//     category: "Web / App Development",
-//     title: "Delex Relay , a delivery platfrome",
-//     description:
-//       "Delex is a Delivery Platforme for bussiness owner And indivudial who want to send packages from a point to an other ,Delex offer a tracking system too ",
-//     image: image1,
-//     link: "#",
-//   },
-//   {
-//     id: 2,
-//     category: "UI/UX Design",
-//     title: "Cooke Me ,Fresh food At your Home",
-//     description:
-//       "Cooke me is an platform that offer fresh meal with a cheap price and allow indivudial to sell their meals  ",
-//     image: image2,
-//     link: "#",
-//   },
-//   {
-//     id: 3,
-//     category: "UI/UX Design",
-//     title: "ADOC,Your Online Medical Appoinments",
-//     description:
-//       "ADOC Is an online Medical appoinment, That allow user To take an appoinment with a doctor , it alos work as a medical files Holder",
-//     image: image3,
-//     link: "#",
-//   },
-// ];
-
 const allProjects = async () => {
   // data fetching from the database
   const projects = await getProjects();

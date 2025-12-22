@@ -1,15 +1,14 @@
 "use client";
 
-import "./globals.css";
-import { Navbar } from "./_components/Navbar";
-import { Footer } from "./_components/Footer";
-import Testmonial from "./_components/Testmonial";
-import { usePathname } from "next/navigation";
-import { ClerkProvider } from "@clerk/nextjs";
 import { ContextImageProvider } from "@/context/ImageContext";
-import { useEffect, useState } from "react";
-import SidebarModal from "./_components/SidebarModal";
+import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "next-themes";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Footer } from "./_components/Footer";
+import { Navbar } from "./_components/Navbar";
+import SidebarModal from "./_components/SidebarModal";
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -43,9 +42,8 @@ export default function RootLayout({
     <ClerkProvider signInUrl="/sign-in" signUpUrl="/sign-up">
       {/* Context provider for image handling */}
       <ContextImageProvider>
-       
         <html lang="en" suppressHydrationWarning>
-          <body cz-shortcut-listen="true" className="container mx-auto">
+          <body cz-shortcut-listen="true" className="w-full">
             <ThemeProvider attribute="class" enableSystem defaultTheme="system">
               {pathName.includes("/admin") ||
               pathName === "/sign-in" ||
@@ -53,19 +51,21 @@ export default function RootLayout({
                 <> {children}</>
               ) : (
                 <>
-                  <Navbar mobileMenu={mobilemenu} setMobileMenu={setMobileMenu} />
+                  <Navbar
+                    mobileMenu={mobilemenu}
+                    setMobileMenu={setMobileMenu}
+                  />
                   <div>{children}</div>
-                <Footer />
-                <SidebarModal
-                  mobilemenu={mobilemenu}
-                  setMobileMenu={setMobileMenu}
-                />
-              </>
-            )}
-             </ThemeProvider>
+                  <Footer />
+                  <SidebarModal
+                    mobilemenu={mobilemenu}
+                    setMobileMenu={setMobileMenu}
+                  />
+                </>
+              )}
+            </ThemeProvider>
           </body>
         </html>
-       
       </ContextImageProvider>
     </ClerkProvider>
   );

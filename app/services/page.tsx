@@ -48,27 +48,6 @@ const cartDescription = [
 ];
 
 const page = async () => {
-  // Fetching services from the database can be done here if needed
-  // const services = [
-  //   {
-  //     id: 2,
-  //     created_at: "2025-12-15T04:44:24.000Z",
-  //     serviceName: "development",
-  //     description: "we are working from heart!",
-  //     image:
-  //       "https://res.cloudinary.com/dsktb64i8/image/upload/v1765795464/ctlubnigc1um6lgstjwk.png",
-  //     image_public_id: "ctlubnigc1um6lgstjwk",
-  //   },
-  //   {
-  //     id: 3,
-  //     created_at: "2025-12-15T04:44:24.000Z",
-  //     serviceName: "development",
-  //     description: "we are working from heart!",
-  //     image:
-  //       "https://res.cloudinary.com/dsktb64i8/image/upload/v1765795464/ctlubnigc1um6lgstjwk.png",
-  //     image_public_id: "ctlubnigc1um6lgstjwk",
-  //   },
-  // ];
   const services = await getServices();
   // console.log("services lenght", services.length);
   return (
@@ -84,7 +63,7 @@ const page = async () => {
       {/* part 2 */}
 
       <div className="w-full py-[70px] lg:py-32 ">
-        <h4 className="text-[22px] text-blue-500 dark:text-white font-bold pb-5 ">
+        <h4 className="text-[16px] lg:text-[22px] text-blue-500 dark:text-white font-bold pb-5 ">
           Our Process
         </h4>
 

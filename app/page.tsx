@@ -8,7 +8,7 @@ import Testmonial from "./_components/Testmonial";
 
 export default function Home() {
   return (
-    <div className=" w-full container mx-auto px-6 lg:px-28 mt-20 lg:mt-32 ">
+    <div className="w-full lg:px-28 mt-24 lg:mt-40 ">
       <DashboardButton />
       <HeroBannner />
       <ClientCompany />

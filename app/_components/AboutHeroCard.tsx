@@ -10,6 +10,7 @@ export async function AnimatedTestimonialsDemo() {
     return <div>No testimonials available</div>;
   }
   const testimonials = teamMembers.map((member: any) => ({
+    id: member.id,
     name: member.name,
     designation: member.profession,
     src: member.image,

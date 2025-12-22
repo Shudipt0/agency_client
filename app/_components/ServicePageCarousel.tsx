@@ -1,6 +1,7 @@
 "use client";
 import tiktik from "@/app/images/Titik.svg";
 import Image from "next/image";
+import Link from "next/link";
 import { IoArrowBackSharp, IoArrowForwardSharp } from "react-icons/io5";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -53,9 +54,13 @@ const ServicePageCarousel = ({ services }: ServicePageCarouselProps) => {
               <h4 className="text-[16px] lg:text-[22px] text-blue-500 dark:text-white font-semibold ">
                 Our Services
               </h4>
-              <h1 className=" text-[22px] lg:text-[40px] font-bold leading-tight ">
-                {service.service_name}
+
+              <h1 className=" text-[22px] lg:text-[40px] font-bold leading-tight hover:underline underline-offset-2">
+                <Link href={`services/${service.id}`}>
+                  {service.service_name}
+                </Link>
               </h1>
+
               <p className="text-[#0E0E2C]/60 dark:text-white/60 text-[18px] lg:text-[22px] ">
                 {service.description.split(" ").slice(0, 30).join(" ")}
               </p>
@@ -79,9 +84,9 @@ const ServicePageCarousel = ({ services }: ServicePageCarouselProps) => {
         ))}
       </Carousel>
       {/* Overlay */}
-      <div className="absolute w-full h-full lg:h-[450px] bg-transparent z-20">
+      {/* <div className="absolute w-full h-full lg:h-[450px] bg-transparent z-20">
         {" "}
-      </div>
+      </div> */}
     </div>
   );
 };
