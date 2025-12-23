@@ -82,13 +82,13 @@ const ClientCompany = ({
   ],
 }: LogosProps) => {
   return (
-    <section className="container mx-auto px-6 py-16 md:py-20 lg:py-28">
-      <div className="container flex flex-col justify-center text-start">
+    <section className="container mx-auto px-6 py-8 md:py-24">
+      <div className=" flex flex-col justify-center text-start">
         <h1 className="mb-8 text-2xl font-bold text-pretty lg:text-4xl">
           {heading}
         </h1>
       </div>
-      <div className="w-full pt-4 md:pt-8 lg:pt-10 ">
+      <div className="w-full pt-2 md:pt-8 ">
         <div className="relative mx-auto flex items-center justify-center w-full lg:max-w-7xl dark:bg-gray-100 py-2">
           <Carousel
             opts={{ loop: true }}

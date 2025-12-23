@@ -1,15 +1,14 @@
 "use client";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { IoArrowBackSharp, IoArrowForwardSharp } from "react-icons/io5";
 import { Carousel } from "react-responsive-carousel";
-import { IoArrowBackSharp } from "react-icons/io5";
-import { IoArrowForwardSharp } from "react-icons/io5";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 import Image from "next/image";
-
+import Link from "next/link";
 
 interface Expert {
   id: number;
-  experts_name: string;
+  expert_name: string;
   bio_data: string;
   thought: string;
   image: string;
@@ -21,7 +20,7 @@ interface TestCarouselProps {
 
 const TestCarousel = ({ experts }: TestCarouselProps) => {
   return (
-    <div className="relative w-full flex flex-col justify-center items-center ">
+    <div className="relative w-full flex flex-col justify-center items-center touch-pan-y">
       <Carousel
         showIndicators={false}
         showStatus={false}
@@ -42,17 +41,24 @@ const TestCarousel = ({ experts }: TestCarouselProps) => {
             <IoArrowForwardSharp />
           </div>
         )}
-        className="w-full "
+        swipeable={true}
+        emulateTouch={true}
+        preventMovementUntilSwipeScrollTolerance={true}
+        swipeScrollTolerance={20}
+        className="w-full touch-pan-y"
       >
         {experts.map((item) => (
           <div
             key={item.id}
-            className=" w-full  h-fit md:h-[350px] text-start py-[75px] "
+            className=" w-full h-fit text-start pt-10 pb-16 md:pb-[65px] "
           >
             <p className="text-[16px] lg:text-[22px] text-gray-400 ">
               {item.thought.split(" ").slice(0, 35).join(" ")}
             </p>
-            <div className="flex items-center space-x-4 mt-4">
+            <Link
+              href={`/expert/${item.id}`}
+              className="w-fit flex items-center space-x-4 mt-4"
+            >
               <div className="w-[68px] h-[68px] rounded-full overflow-hidden">
                 <Image
                   src={item.image}
@@ -62,18 +68,18 @@ const TestCarousel = ({ experts }: TestCarouselProps) => {
                   className="object-cover"
                 />
               </div>
-              <div>
+              <div className="">
                 <h1 className="text-[18px] font-semibold ">
-                  {item.experts_name}
+                  {item.expert_name}
                 </h1>
                 <p className="text-[16px] text-gray-400">{item.bio_data}</p>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </Carousel>
       {/* Overlay */}
-      <div className="absolute w-full h-full bg-transparent z-10 "> </div>
+      {/* <div className="absolute w-full h-full bg-transparent z-10 "> </div> */}
     </div>
   );
 };

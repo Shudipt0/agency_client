@@ -20,7 +20,7 @@ interface ServicePageCarouselProps {
 const ServicePageCarousel = ({ services }: ServicePageCarouselProps) => {
   if (!services || services.length === 0) return null;
   return (
-    <div className="w-full relative flex flex-col justify-center items-center">
+    <div className="w-full relative flex flex-col justify-center items-center touch-pan-y">
       <Carousel
         showIndicators={false}
         showStatus={false}
@@ -41,13 +41,17 @@ const ServicePageCarousel = ({ services }: ServicePageCarouselProps) => {
             <IoArrowForwardSharp />
           </div>
         )}
-        className="w-full "
+        swipeable={true}
+        emulateTouch={true}
+        preventMovementUntilSwipeScrollTolerance={true}
+        swipeScrollTolerance={20}
+        className="w-full touch-pan-y"
       >
         {/* page1 */}
         {services?.map((service) => (
           <div
             key={service.id}
-            className=" w-full lg:h-[450px] flex flex-col lg:flex-row justify-center lg:justify-between items-center gap-16 "
+            className=" w-full lg:h-[450px] flex flex-col lg:flex-row justify-center lg:justify-between items-center lg:gap-16 "
           >
             {/* left site */}
             <div className="w-full text-start space-y-5 ">
@@ -83,10 +87,6 @@ const ServicePageCarousel = ({ services }: ServicePageCarouselProps) => {
           </div>
         ))}
       </Carousel>
-      {/* Overlay */}
-      {/* <div className="absolute w-full h-full lg:h-[450px] bg-transparent z-20">
-        {" "}
-      </div> */}
     </div>
   );
 };

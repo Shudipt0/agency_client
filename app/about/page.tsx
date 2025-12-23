@@ -15,9 +15,8 @@ const aboutDescription = {
 
 const AboutPage = async () => {
   const teamMembers = await getMembers();
-
   return (
-    <div className=" w-full container mx-auto px-6 lg:px-28 mt-20 lg:mt-32 flex flex-col items-center ">
+    <div className=" w-full container mx-auto px-6 md:px-28 mt-20 md:mt-32 flex flex-col items-center ">
       <Common
         page={aboutDescription.page}
         title={aboutDescription.title}
@@ -26,18 +25,18 @@ const AboutPage = async () => {
         buttonLink={aboutDescription.buttonLink}
       />
 
-      <div className="w-full flex flex-col lg:flex-row gap-16 py-[70px] lg:py-32 ">
+      <div className="w-full flex flex-col md:flex-row gap-8 md:gap-16 py-[70px] md:py-32 ">
         {/* left site */}
-        <div className="w-full lg:w-[330px] space-y-5  ">
+        <div className="w-full md:w-[330px] space-y-5  ">
           <h4 className="text-[22px] text-blue-500 dark:text-white font-bold ">
             The team
           </h4>
-          <h1 className="text-[40px] font-bold leading-tight ">
+          <h1 className="text-[28px] md:text-[40px] font-bold leading-tight ">
             Meet The Awesome and Creative members of Our Team{" "}
           </h1>
         </div>
         {/* right site */}
-        <div className="w-full lg:w-[calc(100%-330px)] ">
+        <div className="w-full md:w-[calc(100%-330px)] ">
           <AboutPageCarousel teamMembers={teamMembers} />
         </div>
       </div>

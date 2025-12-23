@@ -9,9 +9,9 @@ const Testmonial = async () => {
 
   // console.log(experts)
   return (
-    <section className="w-full bg-[#A0A4AB]/10 dark:bg-[#0A0A0A]">
-      <div className="container mx-auto px-6 h-[592px] lg:h-[700px] flex flex-col justify-center ">
-        <div className="w-full lg:w-[660px] space-y-4 lg:space-y-8">
+    <section className="w-full">
+      <div className="container mx-auto h-fit flex flex-col justify-center ">
+        <div className="w-full lg:w-[660px] space-y-2 lg:space-y-5">
           <h4 className="text-[16px] lg:text-[22px] font-semibold text-blue-600 dark:text-white ">
             Testmonial
           </h4>

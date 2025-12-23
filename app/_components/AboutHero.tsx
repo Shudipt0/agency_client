@@ -2,7 +2,7 @@ import { AnimatedTestimonialsDemo } from "./AboutHeroCard";
 
 const AboutHero = () => {
   return (
-    <section className="container mx-auto px-6  py-6 lg:py-16 ">
+    <section className="container mx-auto px-6 py-4 lg:py-8 ">
       <div className="grid grid-cols-1 lg:grid-cols-2 justify-between items-center ">
         {/* left side */}
         <div className="w-full lg:w-[540px] col-span-1 space-y-4 lg:space-y-8">

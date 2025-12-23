@@ -2,14 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { getProjects } from "../actions/projects/fetchProjects";
+import { AvatarComponent } from "./Avatar";
 
 const ProjectHero = async () => {
   //  fetching data from the database
   const projects = await getProjects();
 
-  // console.log("Projects:", projects);
+  // console.log("Projects:", projects[0].creators);
   return (
-    <section className="container mx-auto px-6 py-6 lg:pb-14 lg:pt-4">
+    <section className="container mx-auto px-6 py-3 lg:pb-8 lg:pt-2">
       <div className="w-full lg:w-[540px] space-y-4 lg:space-y-8">
         <h4 className=" text-[16px] lg:text-[22px] font-semibold text-blue-600 dark:text-white ">
           The work we realised
@@ -20,29 +21,32 @@ const ProjectHero = async () => {
       </div>
       {/* cards */}
       <div className="w-full flex flex-col items-center justify-center py-20 space-y-8 lg:space-y-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-16 lg:gap-y-3 justify-center items-center">
+        <div className=" grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-16 lg:gap-y-3 justify-center items-center">
           {projects.map((project: any) => (
-            <Link
-              href={`/projects/${project.id}`}
-              key={project.id}
-              className="col-span-1"
-            >
-              <Image
-                src={project?.image}
-                alt={project.title}
-                width={350}
-                height={350}
-                className="w-[350px] h-[350px] rounded"
-              />
-              <div className=" mt-2 lg:mt-3 ">
-                <h4 className="text-[12px] lg:text-sm font-bold text-blue-500 dark:text-white ">
-                  {project.category}
-                </h4>
-                <p className="text-[12px] lg:text-sm text-gray-500 dark:text-white/80 ">
-                  {project.title}
-                </p>
-              </div>
-            </Link>
+            <div key={project.id} className="col-span-1 space-y-1 md:space-y-3">
+              <Link
+                href={`/projects/${project.id}`}
+                className="col-span-1 group"
+              >
+                <Image
+                  src={project?.image}
+                  alt={project.title}
+                  width={350}
+                  height={350}
+                  className="w-[350px] h-[350px] rounded"
+                />
+                <div className=" mt-2 lg:mt-3 ">
+                  <h4 className="text-[12px] lg:text-sm font-bold text-blue-500 group-hover:text-black/60 dark:text-white dark:group-hover:text-blue-500">
+                    {project.category}
+                  </h4>
+                  <p className="text-[12px] lg:text-sm text-gray-700 group-hover:text-black/60 dark:text-white dark:group-hover:text-blue-500 ">
+                    {project.title}
+                  </p>
+                </div>
+              </Link>
+
+              <AvatarComponent creators={project.creators} />
+            </div>
           ))}
         </div>
         <Link href="/allProjects">

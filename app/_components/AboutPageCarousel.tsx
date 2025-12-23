@@ -38,7 +38,7 @@ export function AboutPageCarousel({ teamMembers }: AboutPageCarouselProps) {
           >
             <Link
               href={`/about/${member.id}`}
-              className="w-[160px] flex flex-col gap-4 "
+              className="w-[160px] flex flex-col gap-4 hover:text-blue-500"
             >
               <Image
                 src={member.image}
@@ -47,10 +47,14 @@ export function AboutPageCarousel({ teamMembers }: AboutPageCarouselProps) {
                 height={235}
                 className="w-full h-[235px] bg-slate-400 rounded-sm "
               />
-              <h2 className="text-[22px] font-bold ">{member.name}</h2>
-              <p className="text-[18px] text-[#0E0E2C]/60 dark:text-white/80 ">
-                {member.profession}
-              </p>
+              <div>
+                <h2 className="text-[18px] md:text-[22px] font-bold ">
+                  {member.name}
+                </h2>
+                <p className="text-[15px] md:text-[18px] text-[#0E0E2C]/60 dark:text-white/80 ">
+                  {member.profession}
+                </p>
+              </div>
             </Link>
           </CarouselItem>
         ))}

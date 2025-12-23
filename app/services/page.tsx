@@ -67,16 +67,16 @@ const page = async () => {
           Our Process
         </h4>
 
-        <div className=" flex flex-col lg:flex-row justify-between gap-16">
+        <div className=" flex flex-col lg:flex-row justify-between gap-8 md:gap-16">
           {/* left site */}
           <div className="w-full   ">
-            <h1 className="text-[40px] font-bold leading-tight ">
+            <h1 className="text-[28px] md:text-[40px] font-bold leading-tight ">
               Our Working Process help you to get the best from our team skill{" "}
             </h1>
           </div>
           {/* right site */}
           <div className="w-full  ">
-            <p className="text-[#0E0E2C]/60 dark:text-white/60 text-[22px] ">
+            <p className="text-[18px] md:text-[22px] text-[#0E0E2C]/60 dark:text-white/60  ">
               With Our team knowloadg of different process We Choose the perfect
               process to suit the Development of your Product{" "}
             </p>
@@ -89,7 +89,7 @@ const page = async () => {
         <div className="hidden lg:inline  absolute top-0 left-[30%] ">
           <Image src={victorUp} alt="victorUp" className="dark:invert" />
         </div>
-        <div className=" w-full grid grid-cols-1 lg:grid-cols-4 justify-between items-center space-y-12 lg:space-y-0 ">
+        <div className=" w-full grid grid-cols-1 lg:grid-cols-4 justify-between items-center space-y-8 lg:space-y-0 ">
           {/* cart */}
           {cartDescription.map((item, index) => (
             <div key={index} className="lg:w-[250px] space-y-4">
@@ -116,7 +116,7 @@ const page = async () => {
 
       {/* part 4 */}
 
-      <div className="w-full py-28 lg:py-32 ">
+      <div className="w-full py-16 lg:py-32 ">
         {/* <ServicePageCarousel services={services} /> */}
         <ServicePageCarouselWrapper services={services} />
       </div>
