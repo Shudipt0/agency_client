@@ -15,7 +15,7 @@ export default function Home() {
       <Services />
       <AboutHero />
       <ProjectHero />
-      <div className="container mx-auto space-x-6 md:space-x-0">
+      <div className="container mx-auto px-6">
         <Testmonial />
       </div>
     </div>

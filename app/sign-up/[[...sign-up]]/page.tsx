@@ -1,19 +1,13 @@
 "use client";
 
-import * as Clerk from "@clerk/elements/common";
 // import * as SignUp from "@clerk/elements/sign-up";
 
-import { FcGoogle } from "react-icons/fc";
-
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import { SignUp } from "@clerk/nextjs";
 // import im from '../../images/background.png'
 
 export default function SignUpPage() {
   return (
-    <section className=" bg-backgroundBanner bg-no-repeat bg-cover w-full h-screen flex items-center justify-center">
+    <section className=" w-full h-screen flex items-center justify-center">
       {/* <SignUp.Root>
         <SignUp.Step name="start" className="container">
           <div className="flex flex-col gap-4">
@@ -59,8 +53,8 @@ export default function SignUpPage() {
                       </div>
                     </Clerk.Input>
                   </Clerk.Field> */}
-                  {/* CAPTCHA Widget */}
-                  {/* <div id="clerk-captcha"></div>
+      {/* CAPTCHA Widget */}
+      {/* <div id="clerk-captcha"></div>
 
                   <SignUp.Action submit asChild>
                     <Button type="submit" className="mt-2 w-full">
@@ -86,7 +80,7 @@ export default function SignUpPage() {
           </div>
         </SignUp.Step> 
           {/* verification */}
-        {/* <SignUp.Step name="verifications">
+      {/* <SignUp.Step name="verifications">
           <SignUp.Strategy name="email_code">
             <h1>Check your email</h1>
             <p>
@@ -105,9 +99,8 @@ export default function SignUpPage() {
       </SignUp.Root> */}
 
       {/* --------------------------------------------- */}
-          
-          <SignUp forceRedirectUrl='/' />
 
+      <SignUp forceRedirectUrl="/" />
     </section>
   );
 }

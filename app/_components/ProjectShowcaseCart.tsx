@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
+import { AvatarComponent } from "./Avatar";
 
 interface ShowcaseItem {
   id: string;
@@ -8,11 +9,12 @@ interface ShowcaseItem {
   title: string;
   description: string;
   image: string;
+  creators: [];
   // link: string;
 }
 
 const ProjectShowcaseCart = ({ item }: { item: ShowcaseItem }) => {
-  const { id, category, title, description, image } = item;
+  const { id, category, title, description, image, creators } = item;
   return (
     <div className=" w-full flex flex-col lg:flex-row justify-between items-center  gap-12 lg:gap-0 ">
       {/* left site */}
@@ -26,6 +28,10 @@ const ProjectShowcaseCart = ({ item }: { item: ShowcaseItem }) => {
         <p className="text-[18px] lg:text-[22px] text-[#0E0E2C]/60 dark:text-white/60 ">
           {description}
         </p>
+        {/* avatar */}
+        <div>
+          <AvatarComponent creators={creators} />
+        </div>
         <div className="hidden lg:flex">
           <Link href={`/projects/${id}`}>
             <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-3 ">

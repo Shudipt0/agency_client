@@ -28,7 +28,7 @@ const TestCarousel = ({ experts }: TestCarouselProps) => {
         renderArrowPrev={(clickHandler, hasPrev) => (
           <div
             onClick={clickHandler}
-            className="absolute bottom-0 left-[30%] lg:left-[44%] h-[48px] w-[48px] z-20 text-blue-500 dark:text-white rounded-full border-2 border-blue-500 dark:bg-blue-500 flex items-center justify-center cursor-pointer"
+            className="absolute bottom-0 left-[35%] lg:left-[44%] h-8 w-8 md:h-[48px] md:w-[48px] z-20 text-blue-500 dark:text-white rounded-full border-2 border-blue-500 dark:bg-blue-500 flex items-center justify-center cursor-pointer"
           >
             <IoArrowBackSharp />
           </div>
@@ -36,7 +36,7 @@ const TestCarousel = ({ experts }: TestCarouselProps) => {
         renderArrowNext={(clickHandler, hasNext) => (
           <div
             onClick={clickHandler}
-            className="absolute bottom-0 right-[30%] lg:right-[44%] h-[48px] w-[48px] z-20 text-blue-500 dark:text-white rounded-full border-2 border-blue-500 dark:bg-blue-500 z-5 flex items-center justify-center cursor-pointer hover:opacity-90"
+            className="absolute bottom-0 right-[35%] lg:right-[44%] h-8 w-8 md:h-[48px] md:w-[48px] z-20 text-blue-500 dark:text-white rounded-full border-2 border-blue-500 dark:bg-blue-500 z-5 flex items-center justify-center cursor-pointer hover:opacity-90"
           >
             <IoArrowForwardSharp />
           </div>
@@ -59,7 +59,7 @@ const TestCarousel = ({ experts }: TestCarouselProps) => {
               href={`/expert/${item.id}`}
               className="w-fit flex items-center space-x-4 mt-4"
             >
-              <div className="w-[68px] h-[68px] rounded-full overflow-hidden">
+              <div className="w-10 h-10 md:w-[68px] md:h-[68px] rounded-full overflow-hidden">
                 <Image
                   src={item.image}
                   alt="expertsImage"

@@ -21,12 +21,12 @@ const ProjectHero = async () => {
       </div>
       {/* cards */}
       <div className="w-full flex flex-col items-center justify-center py-20 space-y-8 lg:space-y-16">
-        <div className=" grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-16 lg:gap-y-3 justify-center items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-16 lg:gap-y-3 justify-center items-center">
           {projects.map((project: any) => (
             <div key={project.id} className="col-span-1 space-y-1 md:space-y-3">
               <Link
                 href={`/projects/${project.id}`}
-                className="col-span-1 group"
+                className="col-span-1 group "
               >
                 <Image
                   src={project?.image}

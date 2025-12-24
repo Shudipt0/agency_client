@@ -1,6 +1,5 @@
 "use client";
 
-import { ContextImageProvider } from "@/context/ImageContext";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "next-themes";
 import { usePathname } from "next/navigation";
@@ -41,32 +40,28 @@ export default function RootLayout({
     //clerk provider
     <ClerkProvider signInUrl="/sign-in" signUpUrl="/sign-up">
       {/* Context provider for image handling */}
-      <ContextImageProvider>
-        <html lang="en" suppressHydrationWarning>
-          <body cz-shortcut-listen="true" className="w-full">
-            <ThemeProvider attribute="class" enableSystem defaultTheme="system">
-              {pathName.includes("/admin") ||
-              pathName === "/sign-in" ||
-              pathName === "/sign-up" ? (
-                <> {children}</>
-              ) : (
-                <>
-                  <Navbar
-                    mobileMenu={mobilemenu}
-                    setMobileMenu={setMobileMenu}
-                  />
-                  <div>{children}</div>
-                  <Footer />
-                  <SidebarModal
-                    mobilemenu={mobilemenu}
-                    setMobileMenu={setMobileMenu}
-                  />
-                </>
-              )}
-            </ThemeProvider>
-          </body>
-        </html>
-      </ContextImageProvider>
+
+      <html lang="en" suppressHydrationWarning>
+        <body cz-shortcut-listen="true" className="w-full">
+          <ThemeProvider attribute="class" enableSystem defaultTheme="system">
+            {pathName.includes("/admin") ||
+            pathName === "/sign-in" ||
+            pathName === "/sign-up" ? (
+              <> {children}</>
+            ) : (
+              <>
+                <Navbar mobileMenu={mobilemenu} setMobileMenu={setMobileMenu} />
+                <div>{children}</div>
+                <Footer />
+                <SidebarModal
+                  mobilemenu={mobilemenu}
+                  setMobileMenu={setMobileMenu}
+                />
+              </>
+            )}
+          </ThemeProvider>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }

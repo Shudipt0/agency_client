@@ -1,17 +1,12 @@
 "use client";
 
-import * as Clerk from "@clerk/elements/common";
 // import * as SignIn from "@clerk/elements/sign-in";
-import { FcGoogle } from "react-icons/fc";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
   return (
-    <section className="bg-backgroundBanner bg-no-repeat bg-cover w-full h-screen flex items-center justify-center">
+    <section className=" w-full h-screen flex items-center justify-center">
       {/* <SignIn.Root>
           <SignIn.Step name="start">
         <h1>Sign in to your account</h1>
@@ -81,8 +76,8 @@ export default function SignInPage() {
                       </div>
                     </Clerk.Input>
                   </Clerk.Field> */}
-                  {/* CAPTCHA Widget */}
-                  {/* <div id="clerk-captcha"></div>
+      {/* CAPTCHA Widget */}
+      {/* <div id="clerk-captcha"></div>
                   <SignIn.Action submit asChild>
                     <Button type="submit" className="mt-2 w-full">
                       Log-in
@@ -106,11 +101,10 @@ export default function SignInPage() {
             </div>
           </div>
         </SignIn.Step> 
- </SignIn.Root> */} 
+ </SignIn.Root> */}
       {/* ------------------------------------------------------------- */}
 
-
-      <SignIn forceRedirectUrl='/' />
+      <SignIn forceRedirectUrl="/" />
     </section>
   );
 }

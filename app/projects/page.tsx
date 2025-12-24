@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
+import { AvatarComponent } from "../_components/Avatar";
 import Common from "../_components/Common";
 import Testmonial from "../_components/Testmonial";
 import { getProjects } from "../actions/projects/fetchProjects";
@@ -57,6 +58,10 @@ const projectPage = async () => {
                 <p className="text-[16px] md:text-[22px] text-[#0E0E2C]/60 dark:text-white/60">
                   {item?.description}
                 </p>
+                {/* avatar */}
+                <div>
+                  <AvatarComponent creators={item?.creators} />
+                </div>
                 <div className="hidden md:flex">
                   <Link href={`/projects/${item.id}`}>
                     <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">
@@ -125,6 +130,10 @@ const projectPage = async () => {
                 <p className="text-[16px] md:text-[22px] text-[#0E0E2C]/60 dark:text-white/60">
                   {item?.description}
                 </p>
+                {/* avatar */}
+                <div>
+                  <AvatarComponent creators={item?.creators} />
+                </div>
                 <div className="hidden md:flex">
                   <Link href={`/projects/${item.id}`}>
                     <button className="flex items-center gap-3 text-sm text-blue-500 dark:text-white px-5 py-3 border-2 border-blue-500 dark:border-white rounded font-semibold mt-5 ">

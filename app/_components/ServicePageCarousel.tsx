@@ -28,7 +28,7 @@ const ServicePageCarousel = ({ services }: ServicePageCarouselProps) => {
         renderArrowPrev={(clickHandler, hasPrev) => (
           <div
             onClick={clickHandler}
-            className="absolute bottom-0 left-[32%] lg:left-[75%] h-[48px] w-[48px] text-blue-500 dark:text-white rounded-full border-2 border-blue-500 dark:bg-blue-500 z-30 flex items-center justify-center cursor-pointer hover:opacity-90"
+            className="absolute bottom-0 left-[35%] lg:left-[75%] h-8 w-8 md:h-[48px] md:w-[48px] text-blue-500 dark:text-white rounded-full border-2 border-blue-500 dark:bg-blue-500 z-30 flex items-center justify-center cursor-pointer hover:opacity-90"
           >
             <IoArrowBackSharp />
           </div>
@@ -36,7 +36,7 @@ const ServicePageCarousel = ({ services }: ServicePageCarouselProps) => {
         renderArrowNext={(clickHandler, hasNext) => (
           <div
             onClick={clickHandler}
-            className="absolute bottom-0 right-[32%] lg:right-[12%] h-[48px] w-[48px] text-blue-500 dark:text-white rounded-full border-2 border-blue-500 dark:bg-blue-500 z-30 flex items-center justify-center cursor-pointer hover:opacity-90"
+            className="absolute bottom-0 right-[35%] lg:right-[12%] h-8 w-8 md:h-[48px] md:w-[48px] text-blue-500 dark:text-white rounded-full border-2 border-blue-500 dark:bg-blue-500 z-30 flex items-center justify-center cursor-pointer hover:opacity-90"
           >
             <IoArrowForwardSharp />
           </div>
