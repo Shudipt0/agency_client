@@ -39,7 +39,6 @@ export default function RootLayout({
   return (
     //clerk provider
     <ClerkProvider signInUrl="/sign-in" signUpUrl="/sign-up">
-      {/* Context provider for image handling */}
 
       <html lang="en" suppressHydrationWarning>
         <body cz-shortcut-listen="true" className="w-full">

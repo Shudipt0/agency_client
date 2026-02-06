@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { AvatarImage } from "@radix-ui/react-avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+// import { AvatarImage } from "@radix-ui/react-avatar";
 import Link from "next/link";
 import { getMemberDetails } from "../actions/members/fetchMember";
 
@@ -25,8 +25,8 @@ export function AvatarComponent({ creators }: Props) {
             key={c.creator_id}
             className="relative "
           >
-            <Avatar className="peer">
-              <AvatarImage src={creator[0].image} alt={creator[0].name} />
+            <Avatar className="h-10 w-10 overflow-hidden rounded-full peer ring-2 ring-green-500 ">
+              <AvatarImage src={creator[0].image} alt={creator[0].name} className="object-cover " />
               <AvatarFallback>{creator[0].name.charAt(0)}</AvatarFallback>
             </Avatar>
             <p className="min-w-20 absolute -bottom-3 md:-bottom-6 text-[10px] text-white font-thin hidden peer-hover:block ">
