@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { imageRemove } from "../actions/imageRemove";
+// import { imageRemove } from "../actions/imageRemove";
 import { useImageContext } from "@/context/ImageContext";
 
 const ImageUpload = () => {
@@ -11,13 +11,13 @@ const ImageUpload = () => {
   const [imageKey, setImageKey] = useState("");
 
   const handleRemoveImage = async () => {
-    const res = await imageRemove(imageKey);
-    if (res.success) {
-      alert("One file is removed from server");
-      setImageUrl("");
-      setImageKey("");
-    }
-    console.log("removing image");
+    // const res = await imageRemove(imageKey);
+    // if (res.success) {
+    //   alert("One file is removed from server");
+    //   setImageUrl("");
+    //   setImageKey("");
+    // }
+    // console.log("removing image");
   };
   return (
     <div>
