@@ -27,7 +27,7 @@ export const addProject_creator = async (prevState: any, data: FormData) => {
   const project_creator = validateFields.data;
 
   try {
-    const res = await fetch(`http://localhost:5000/api/v1/project_creators`, {
+    const res = await fetch(`${process.env.BASE_URL}/project_creators`, {
       method: "POST",
       body: JSON.stringify(project_creator),
       headers: {
@@ -57,7 +57,7 @@ export const addProject_creator = async (prevState: any, data: FormData) => {
 // delete project_creator
 export const deleteProject_creator = async (id: string) => {
   const res = await fetch(
-    `http://localhost:5000/api/v1/project_creators/${id}`,
+    `${process.env.BASE_URL}/project_creators/${id}`,
     {
       method: "DELETE",
       credentials: "include",

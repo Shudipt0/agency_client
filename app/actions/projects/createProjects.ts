@@ -58,7 +58,7 @@ export const addProject = async (prevState: any, data: FormData) => {
   }
 
   try {
-    const res = await fetch(`http://localhost:5000/api/v1/projects`, {
+    const res = await fetch(`${process.env.BASE_URL}/projects`, {
       method: "POST",
       body: payload,
       credentials: "include",
@@ -80,7 +80,7 @@ export const addProject = async (prevState: any, data: FormData) => {
 
 // delete projects
 export const deleteProject = async (id: string) => {
-  const res = await fetch(`http://localhost:5000/api/v1/projects/${id}`, {
+  const res = await fetch(`${process.env.BASE_URL}/projects/${id}`, {
     method: "DELETE",
     credentials: "include",
   });

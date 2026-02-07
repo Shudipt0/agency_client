@@ -52,7 +52,7 @@ export const addThought = async (prevState: any, data: FormData) => {
   }
 
   try {
-    const res = await fetch(`http://localhost:5000/api/v1/experts`, {
+    const res = await fetch(`${process.env.BASE_URL}/experts`, {
       method: "POST",
       body: payload,
       credentials: "include",
@@ -74,7 +74,7 @@ export const addThought = async (prevState: any, data: FormData) => {
 
 // delete expert
 export const deleteThought = async (id: string) => {
-  const res = await fetch(`http://localhost:5000/api/v1/experts/${id}`, {
+  const res = await fetch(`${process.env.BASE_URL}/experts/${id}`, {
     method: "DELETE",
     credentials: "include",
   });

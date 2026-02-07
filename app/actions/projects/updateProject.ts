@@ -65,7 +65,7 @@ export const upDateProject = async (prevState: any, data: FormData) => {
     payload.append("image", validateFields.image_url);
   }
   // update projects
-  const res = await fetch(`http://localhost:5000/api/v1/projects/${id}`, {
+  const res = await fetch(`${process.env.BASE_URL}/projects/${id}`, {
     method: "PUT",
     body: payload,
     credentials: "include",

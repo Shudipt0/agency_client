@@ -49,7 +49,7 @@ export const addService = async (prevState: any, data: FormData) => {
   }
 
   try {
-    const res = await fetch(`http://localhost:5000/api/v1/services`, {
+    const res = await fetch(`${process.env.BASE_URL}/services`, {
       method: "POST",
       body: payload,
       credentials: "include",
@@ -73,7 +73,7 @@ export const addService = async (prevState: any, data: FormData) => {
 
 // delete service
 export const deleteService = async (id: string) => {
-  const res = await fetch(`http://localhost:5000/api/v1/services/${id}`, {
+  const res = await fetch(`${process.env.BASE_URL}/services/${id}`, {
     method: "DELETE",
     credentials: "include",
   });

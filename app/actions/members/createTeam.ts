@@ -52,7 +52,7 @@ export const addTeamMember = async (prevState: any, data: FormData) => {
   }
 
   try {
-    const res = await fetch(`http://localhost:5000/api/v1/users`, {
+    const res = await fetch(`${process.env.BASE_URL}/users`, {
       method: "POST",
       body: payload,
       credentials: "include",
@@ -73,7 +73,7 @@ export const addTeamMember = async (prevState: any, data: FormData) => {
 
 // delete service
 export const deleteTeamMember = async (id: string) => {
-  const res = await fetch(`http://localhost:5000/api/v1/users/${id}`, {
+  const res = await fetch(`${process.env.BASE_URL}/users/${id}`, {
     method: "DELETE",
     credentials: "include",
   });

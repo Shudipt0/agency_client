@@ -59,7 +59,7 @@ export const upDateService = async (prevState: any, data: FormData) => {
     payload.append("image", validateFields.image_url);
   }
 
-  const res = await fetch(`http://localhost:5000/api/v1/services/${id}`, {
+  const res = await fetch(`${process.env.BASE_URL}/services/${id}`, {
     method: "PUT",
     body: payload,
     credentials: "include",
