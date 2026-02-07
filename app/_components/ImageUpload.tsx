@@ -1,5 +1,5 @@
 "use client";
-import { UploadDropzone } from "@/utils/uploadthing";
+
 import Image from "next/image";
 import { useState } from "react";
 import { imageRemove } from "../actions/imageRemove";
@@ -21,7 +21,7 @@ const ImageUpload = () => {
   };
   return (
     <div>
-      <UploadDropzone
+      {/* <UploadDropzone
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
           // Do something with the response
@@ -34,7 +34,7 @@ const ImageUpload = () => {
           // Do something with the error.
           alert(`ERROR! ${error.message}`);
         }}
-      />
+      /> */}
 
       <div className="py-8 space-y-5">
         <h1 className="text-sm font-semibold">Image preview</h1>
